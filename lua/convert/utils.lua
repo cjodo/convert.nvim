@@ -9,16 +9,16 @@ utils.get_cursor_pos = function ()
 	}
 end
 
--- @param line string
--- @param line table
+---@param units table
+---@param line string
 utils.match_unit = function (line, units)
-
 	for unit, pattern in pairs(units) do
 		local s, e = string.find(line, pattern)
-
 		if s ~= nil and e ~= nil then
+			local val = string.sub(line, s, e - #unit)
 			return {
 				unit = unit,
+				val = val,
 				pos = {
 					s = s,	-- start col
 					e = e		-- end col

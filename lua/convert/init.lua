@@ -1,5 +1,6 @@
 local utils = require("convert.utils")
 local units = require("convert.patterns")
+local calculator = require('convert.calculator')
 
 local M = {}
 
@@ -32,17 +33,10 @@ M.find_next = function ()
 	end
 
 	if found_unit ~= nil then
-		local line_count = vim.api.nvim_buf_line_count(0)
-
+		print(found_unit.val)
+		calculator.convert(found_unit.unit, 'rem', found_unit.val)
 		vim.api.nvim_win_set_cursor(current_win, {found_unit.row, found_unit.pos.s - 1})
-		utils.get_base_font_size()
 	end
 end
-
-local pt = '123pt'
-
-local pt = '123pt'
-
-local px = '123px'
 
 return M
