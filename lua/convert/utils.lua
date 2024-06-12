@@ -20,8 +20,8 @@ utils.match_unit = function (line, units)
 				unit = unit,
 				val = val,
 				pos = {
-					s = s,	-- start col
-					e = e		-- end col
+					start_col = s,	-- start col
+					end_col = e		-- end col
 				}
 			}
 		end
@@ -37,5 +37,5 @@ utils.get_base_font_size = function ()
 	end
 
 end
-
 return utils
+
