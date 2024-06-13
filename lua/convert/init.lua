@@ -1,5 +1,4 @@
 local utils = require("convert.utils")
-local units = require("convert.patterns")
 local ui = require("convert.ui.open_popup")
 
 local M = {}

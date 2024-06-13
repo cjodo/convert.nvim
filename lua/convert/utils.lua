@@ -13,10 +13,11 @@ end
 
 ---@param line string
 utils.match_unit = function (line)
+	print(line)
 	for unit, pattern in pairs(units) do
-		local s, e = string.find(line, pattern)
+		local s, e, val = string.find(line, pattern)
 		if s ~= nil and e ~= nil then
-			local val = string.sub(line, s, e - #unit)
+			print(unit, val)
 			return {
 				unit = unit,
 				val = val,
@@ -27,16 +28,6 @@ utils.match_unit = function (line)
 			}
 		end
 	end
-end
-
-utils.get_base_font_size = function ()
-	local bufnr = vim.api.nvim_get_current_buf()
-	local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, true)
-
-	for i = 1, #lines, 1 do
-		
-	end
-
 end
 
 utils.find_unit_in_line = function (line, cursor_row)
@@ -51,6 +42,13 @@ utils.find_unit_in_line = function (line, cursor_row)
 		}
 	end
 	return nil
+end
+
+---@param num number
+---@param numDecimalPlaces number
+utils.round = function (num, numDecimalPlaces)
+	local mult = 10^(numDecimalPlaces or 0)
+	return math.floor(num * mult + 0.5) / mult
 end
 
 return utils

@@ -1,67 +1,67 @@
 local utils = require("convert.utils")
 
-local base_font_size = utils.get_base_font_size() or 16
+local base_font_size = 16
 
 ---@return integer
 local converters = { -- pattern is like this: converters[from][to](value_from) 
-	px = {
-		---@param val integer
-		rem = function (val)
-			return val / base_font_size
-		end,
-		em = function (val)
-			return val / base_font_size -- TODO: Not quite how this works but close enough for now
-		end,
-		cm = function (val)
-			return val * 0.0264583333
-		end,
-		inch = function (val)
-			return val * 0.010417
-		end,
-		pt = function (val)
-			return val * 0.74999943307122
-		end
-	},
-	pt = {
-		rem = function (val)
-			local px = val * (4/3)
-			return px / base_font_size
-		end,
-		em = function (val)
-			local px = val * (4/3)
-			return px / base_font_size
-		end,
-		cm = function (val)
-			return val * 0.0352778
-		end,
-		inch = function (val)
-			return val * 0.0138889
-		end,
-		px = function (val)
-			return val * (4/3)
-		end
-	},
-	rem = {
-		px = function (val)
-			return val * base_font_size
-		end,
-		em = function (val)
-			return val -- Assuming 1rem = 1em for simplicity
-		end,
-		cm = function (val)
-			local px = val * base_font_size
-			return px * 0.0264583333
-		end,
-		inch = function (val)
-			local px = val * base_font_size
-			return px * 0.010417
-		end,
-		pt = function (val)
-			local px = val * base_font_size
-			return px * 0.74999943307122
-		end
-	},
- em = {
+    px = {
+        ---@param val integer
+        rem = function (val)
+            return ( val / base_font_size)
+        end,
+        em = function (val)
+            return val / base_font_size -- TODO: Not quite how this works but close enough for now
+        end,
+        cm = function (val)
+            return val * 0.0264583333
+        end,
+        ['in'] = function (val)
+            return val * 0.010417
+        end,
+        pt = function (val)
+            return val * 0.74999943307122
+        end
+    },
+    pt = {
+        rem = function (val)
+            local px = val * (4/3)
+            return px / base_font_size
+        end,
+        em = function (val)
+            local px = val * (4/3)
+            return px / base_font_size
+        end,
+        cm = function (val)
+            return val * 0.0352778
+        end,
+        ['in'] = function (val)
+            return val * 0.0138889
+        end,
+        px = function (val)
+            return val * (4/3)
+        end
+    },
+    rem = {
+        px = function (val)
+            return val * base_font_size
+        end,
+        em = function (val)
+            return val -- Assuming 1rem = 1em for simplicity
+        end,
+        cm = function (val)
+            local px = val * base_font_size
+            return px * 0.0264583333
+        end,
+        ['in'] = function (val)
+            local px = val * base_font_size
+            return px * 0.010417
+        end,
+        pt = function (val)
+            local px = val * base_font_size
+            return px * 0.74999943307122
+        end
+    },
+    em = {
         px = function (val)
             return val * base_font_size -- Assuming 1em = base_font_size in pixels
         end,
@@ -72,7 +72,7 @@ local converters = { -- pattern is like this: converters[from][to](value_from)
             local px = val * base_font_size
             return px * 0.0264583333
         end,
-        inch = function (val)
+        ['in'] = function (val)
             local px = val * base_font_size
             return px * 0.010417
         end,
@@ -96,7 +96,7 @@ local converters = { -- pattern is like this: converters[from][to](value_from)
         cm = function (val)
             return val * 0.1
         end,
-        inch = function (val)
+        ['in'] = function (val)
             return val * 0.0393701
         end,
         pt = function (val)
@@ -118,13 +118,36 @@ local converters = { -- pattern is like this: converters[from][to](value_from)
         mm = function (val)
             return val * 10
         end,
-        inch = function (val)
+        ['in'] = function (val)
             return val * 0.393701
         end,
         pt = function (val)
             return val * 28.346456693
         end
     },
+    ['in'] = {
+        px = function(val)
+            return val * 96  -- 1 inch = 96 pixels (CSS standard)
+        end,
+        rem = function(val)
+            local px = val * 96
+            return px / base_font_size
+        end,
+        em = function(val)
+            local px = val * 96
+            return px / base_font_size
+        end,
+        cm = function(val)
+            return val * 2.54  -- 1 inch = 2.54 centimeters
+        end,
+        mm = function(val)
+            return val * 25.4  -- 1 inch = 25.4 millimeters
+        end,
+        pt = function(val)
+            return val * 72  -- 1 inch = 72 points (typographical points)
+        end
+    },
+    -- COLORS
     hex = {
         rgb = function (val)
             local hex = val:gsub("#", "")

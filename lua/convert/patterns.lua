@@ -1,15 +1,17 @@
 --FUNCK REGEX
 local M = {
-	px = '[0-9]+%.?[0-9]*px', -- %.? in the pattern allows for optional decimal points
-	rem = '[0-9]+%.?[0-9]*rem',
-	em = '[0-9]+%.?[0-9]*em',
-	pt = '[0-9]+%.?[0-9]*pt',
-	['in'] = '[0-9]+%.?[0-9]*in',
-	cm = '[0-9]+%.?[0-9]*cm',
-	mm = '[0-9]+%.?[0-9]*mm',
-	-- TODO: color handling
+	px = "(%d+%.?%d*)px",
+	rem = "(%d+%.?%d*)rem",
+	em = "(%d+%.?%d*)em",
+	['in'] = "(%d+%.?%d*)in",
+	ch = "(%d+%.?%d*)ch",
+	mm = "(%d+%.?%d*)mm",
+	cm = "(%d+%.?%d*)cm",
+	pt = "(%d+%.?%d*)pt",
+	pc = "(%d+%.?%d*)pc",
+	-- TODO: better color handling
 	rgb = 'rgb%(%s*[0-9]+%s*,%s*[0-9]+%s*,%s*[0-9]+%s*%)',
-	hex = '#%x%x%x%x%x%x',
+	hex = "#(%x%x%x%x%x%x%x%x?)",
 	hsl = 'hsl%(%s*[0-9]+%s*,%s*[0-9]+%%%s*,%s*[0-9]+%%%s*%)'
 
 }
