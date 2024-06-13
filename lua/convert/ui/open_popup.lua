@@ -1,6 +1,7 @@
 local Menu = require("nui.menu")
 local event = require("nui.utils.autocmd").event
 local utils = require("convert.utils")
+local calculator = require("convert.calculator")
 
 local M = {}
 
@@ -43,14 +44,15 @@ M.open_win = function (found_unit)
     keymap = {
       focus_next = { "j", "<Down>", "<Tab>"  },
       focus_prev = { "k", "<Up>", "<S-Tab>"  },
-      close = { "<Esc>", "<C-c>"  },
+      close = { "<Esc>", "<C-c>", 'qq' },
       submit = { "<CR>", "<Space>"  },
     },
-    on_close = function ()
-      print("Closed")
-    end,
     on_submit = function (item)
-      print("Submitted", item.text)
+      local from_unit = found_unit.unit
+      local to_unit = item.text
+      local from_val = found_unit.val
+      local converted = calculator.convert(from_unit, to_unit, from_val) .. to_unit
+      vim.api.nvim_buf_set_text(0, found_unit.row - 1, found_unit.start_col - 1, found_unit.row - 1, found_unit.end_col, {converted} )
     end
   })
 

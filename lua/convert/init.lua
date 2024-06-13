@@ -27,7 +27,8 @@ M.find_next = function ()
 			-- based on current pos.. row 1 would indicate current row
 			found_unit = unit
 			found_unit.row = row
-			found_unit.col = unit.pos.start_col
+			found_unit.start_col = unit.pos.start_col
+			found_unit.end_col = unit.pos.end_col
 			current_line = row
 			break
 		end
@@ -35,8 +36,7 @@ M.find_next = function ()
 	end
 
 	if found_unit ~= nil then
-		print(found_unit.val)
-		vim.api.nvim_win_set_cursor(current_win, {found_unit.row, found_unit.col - 1})
+		vim.api.nvim_win_set_cursor(current_win, {found_unit.row, found_unit.start_col - 1})
 		ui.open_win(found_unit)
 	end
 end
