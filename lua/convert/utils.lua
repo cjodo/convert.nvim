@@ -1,5 +1,7 @@
 local utils = {}
 
+local units = require('convert.patterns')
+
 utils.get_cursor_pos = function ()
 	local r, c = unpack(vim.api.nvim_win_get_cursor(0))
 
@@ -9,9 +11,8 @@ utils.get_cursor_pos = function ()
 	}
 end
 
----@param units table
 ---@param line string
-utils.match_unit = function (line, units)
+utils.match_unit = function (line)
 	for unit, pattern in pairs(units) do
 		local s, e = string.find(line, pattern)
 		if s ~= nil and e ~= nil then
@@ -37,5 +38,19 @@ utils.get_base_font_size = function ()
 	end
 
 end
-return utils
 
+utils.find_unit_in_line = function (line, cursor_row)
+	local unit = utils.match_unit(line)
+	if unit then
+		return {
+			unit = unit.unit,
+			val = unit.val,
+			row = cursor_row,
+			start_col = unit.pos.start_col,
+			end_col = unit.pos.end_col
+		}
+	end
+	return nil
+end
+
+return utils
