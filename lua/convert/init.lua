@@ -51,7 +51,7 @@ M.find_current = function ()
 
 	if unit ~= nil then
 		found_unit = unit
-		found_unit.row = current_line
+		found_unit.row = cursor_pos.row
 		found_unit.start_col = unit.pos.start_col
 		found_unit.end_col = unit.pos.end_col
 	end
