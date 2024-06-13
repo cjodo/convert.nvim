@@ -1,6 +1,5 @@
 local Menu = require("nui.menu")
 local event = require("nui.utils.autocmd").event
-local utils = require("convert.utils")
 local calculator = require("convert.calculator")
 
 local M = {}
@@ -38,7 +37,9 @@ M.open_win = function (found_unit)
       Menu.item('em'),
       Menu.item('cm'),
       Menu.item('inch'),
-      Menu.item('pt'),
+      Menu.item('rgb'),
+      Menu.item('hex'),
+      Menu.item('hsl'),
     },
     max_width = 100,
     keymap = {

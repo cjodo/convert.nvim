@@ -1,6 +1,5 @@
 local utils = require("convert.utils")
 local units = require("convert.patterns")
-local calculator = require('convert.calculator')
 local ui = require("convert.ui.open_popup")
 
 local M = {}
@@ -41,4 +40,27 @@ M.find_next = function ()
 	end
 end
 
-return M
+M.find_current = function ()
+	local cursor_pos =	utils.get_cursor_pos()
+	local current_win = vim.api.nvim_get_current_win()
+
+	current_line =  vim.api.nvim_get_current_line()
+
+	local unit = utils.match_unit(current_line, units) -- Returns the found unit and start column of found unit
+	local found_unit = nil
+
+	if unit ~= nil then
+		found_unit = unit
+		found_unit.row = current_line
+		found_unit.start_col = unit.pos.start_col
+		found_unit.end_col = unit.pos.end_col
+	end
+
+	if found_unit ~= nil then
+		vim.api.nvim_win_set_cursor(current_win, {cursor_pos.row, found_unit.start_col - 1})
+		ui.open_win(found_unit)
+	end
+
+end
+
+	return M
