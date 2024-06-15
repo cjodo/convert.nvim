@@ -1,7 +1,6 @@
 local Menu = require("nui.menu")
-local event = require("nui.utils.autocmd").event
 local calculator = require("convert.calculator")
-local utils = require("convert.utils")
+local parser = require('convert.parsers.parser')
 
 local M = {}
 
@@ -54,6 +53,9 @@ M.open_win = function (found_unit)
       local to_unit = item.text
       local from_val = found_unit.val
       local converted = calculator.convert(from_unit, to_unit, from_val) .. to_unit
+      local file_path = vim.fn.expand('%')
+      local base_font = parser.base_font(file_path, found_unit.row)
+      print(base_font.size .. base_font.unit)
       vim.api.nvim_buf_set_text(0, found_unit.row - 1, found_unit.start_col - 1, found_unit.row - 1, found_unit.end_col, {converted} )
     end
   })

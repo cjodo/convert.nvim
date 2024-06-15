@@ -1,5 +1,3 @@
-local utils = require("convert.utils")
-
 local base_font_size = 16
 
 ---@return integer
