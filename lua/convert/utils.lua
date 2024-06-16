@@ -2,7 +2,7 @@ local M = {}
 
 local units = require('convert.patterns')
 
-M.parse_base_font = function (file_path)
+M.parse_base_font = function(file_path)
 	local file = io.open(file_path, "r")
 	if not file then
 		return nil, "Failed to open file"
@@ -30,7 +30,7 @@ M.parse_base_font = function (file_path)
 	return nil, "Font size not found in body, :root, or * selector"
 end
 
-M.get_cursor_pos = function ()
+M.get_cursor_pos = function()
 	local r, c = unpack(vim.api.nvim_win_get_cursor(0))
 
 	return {
@@ -40,23 +40,27 @@ M.get_cursor_pos = function ()
 end
 
 ---@param line string
-M.match_unit = function (line)
+M.match_unit = function(line)
 	for unit, pattern in pairs(units) do
 		local s, e, val = string.find(line, pattern)
 		if s ~= nil and e ~= nil then
+			if unit == 'rgb' then
+				val = line:match(pattern)
+				print(val)
+			end
 			return {
 				unit = unit,
 				val = val,
 				pos = {
-					start_col = s,	-- start col
-					end_col = e		-- end col
+					start_col = s, -- start col
+					end_col = e -- end col
 				}
 			}
 		end
 	end
 end
 
-M.find_unit_in_line = function (line, cursor_row)
+M.find_unit_in_line = function(line, cursor_row)
 	local unit = M.match_unit(line)
 	if unit then
 		return {
@@ -72,9 +76,18 @@ end
 
 ---@param num number
 ---@param numDecimalPlaces number
-M.round = function (num, numDecimalPlaces)
-	local mult = 10^(numDecimalPlaces or 0)
+M.round = function(num, numDecimalPlaces)
+	local mult = 10 ^ (numDecimalPlaces or 0)
 	return math.floor(num * mult + 0.5) / mult
+end
+
+M.contains = function(table, value)
+	for _, v in ipairs(table) do
+		if v == value then
+			return true
+		end
+	end
+	return false
 end
 
 return M

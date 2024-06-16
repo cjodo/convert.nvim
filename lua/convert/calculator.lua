@@ -6,20 +6,37 @@ local M = {}
 ---@param from string
 ---@param to string
 ---@param val number
----@param base_font string
-M.convert = function (from, to, val)
+M.convert = function(from, to, val)
 	if from == to then
-		return val
+		if (from == 'hex') then
+			return '#' .. val
+		end
+
+		if (from == 'rgb') then
+			return val
+		end
+
+		return val .. from
 	end
+
 	local round = 0
 
-	if(to ~= 'px') then
+	if (to ~= 'px') then
 		round = 2
 	end
 
 	local res = converters[from][to](val)
 
-	return utils.round(res, round)
+	if to == 'rgb' then
+		return res
+	end
+
+	if to == 'hex' then
+		print(res)
+		return "#" .. res
+	end
+
+	return tostring(utils.round(res, round)) .. to
 end
 
 return M

@@ -10,9 +10,10 @@ local M = {
 	pt = "(%d+%.?%d*)pt",
 	pc = "(%d+%.?%d*)pc",
 	-- TODO: better color handling
-	rgb = 'rgb%(%s*[0-9]+%s*,%s*[0-9]+%s*,%s*[0-9]+%s*%)',
-	hex = "#(%x%x%x%x%x%x%x%x?)",
+	rgb = 'rgb%(%d+, %d+, %d+%)',
+	hex = "#(%x%x%x%x?%x?%x?%x?%x?)",
 	hsl = 'hsl%(%s*[0-9]+%s*,%s*[0-9]+%%%s*,%s*[0-9]+%%%s*%)'
 
 }
+
 return M
