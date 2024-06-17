@@ -46,7 +46,6 @@ M.match_unit = function(line)
 		if s ~= nil and e ~= nil then
 			if unit == 'rgb' or unit == 'hsl' then
 				val = line:match(pattern)
-				print(val)
 			end
 			return {
 				unit = unit,

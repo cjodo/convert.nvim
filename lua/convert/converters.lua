@@ -17,7 +17,6 @@ vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter" }, {
     pattern = { "*.css" },
     callback = function()
         update()
-        print(base_font_size)
     end
 })
 
@@ -61,7 +60,6 @@ end
 
 local function rgb_to_hex(rgb)
     local r, g, b = rgb:match(rgb_extract)
-    print(r, g, b)
     local hex = string.format("%02X%02X%02X", r, g, b)
     return hex
 end
@@ -253,7 +251,6 @@ local converters = { -- pattern is like this: converters[from][to](value_from)
         rgb = hsl_to_rgb,
         hex = function(val)
             local rgb = hsl_to_rgb(val)
-            print(rgb)
             return rgb_to_hex(rgb)
         end
     }
