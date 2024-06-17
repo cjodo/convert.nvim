@@ -8,7 +8,7 @@ local M = {}
 ---@param val number
 M.convert = function(from, to, val)
 	if from == to then
-		if (from == 'hex') then
+		if from == 'hex' then
 			return '#' .. val
 		end
 
@@ -27,12 +27,11 @@ M.convert = function(from, to, val)
 
 	local res = converters[from][to](val)
 
-	if to == 'rgb' then
+	if to == 'rgb' or to == 'hsl' then
 		return res
 	end
 
 	if to == 'hex' then
-		print(res)
 		return "#" .. res
 	end
 

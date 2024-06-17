@@ -12,7 +12,7 @@ local M = {
 	-- TODO: better color handling
 	rgb = 'rgb%(%d+, %d+, %d+%)',
 	hex = "#(%x%x%x%x?%x?%x?%x?%x?)",
-	hsl = 'hsl%(%s*[0-9]+%s*,%s*[0-9]+%%%s*,%s*[0-9]+%%%s*%)'
+	hsl = 'hsl%(%d+, %d+%%, %d+%%%)'
 
 }
 

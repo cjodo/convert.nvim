@@ -15,13 +15,13 @@ local size_units = {
 local color_units = {
   'rgb',
   'hex',
-  -- 'hsl'
+  'hsl'
 }
 
 local color_lines = {
   Menu.item('rgb'),
   Menu.item('hex'),
-  -- Menu.item('hsl'),
+  Menu.item('hsl'),
 }
 
 local size_lines = {
