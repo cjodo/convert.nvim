@@ -1,9 +1,16 @@
 # convert.nvim
 
+## Dependencies
+- [nui.nvim](https://github.com/MunifTanjim/nui.nvim): UI Components
+
+## Features
+- Convert css units with one simple command
+- track base font size to convert px to rems effortlessly (Single file support only)
+
 ## Installation: 
 Use your favourite plugin manager
 
-- With Lazy: 
+- Lazy: 
 ```lua
 return {
   'cjodo/convert.nvim',
@@ -17,3 +24,8 @@ return {
 }
 ```
 
+## Usage
+
+- There are only two commands, ```:ConvertFindCurrent``` & ```:ConvertFineNext```
+- Convert find next will look for the next convertable unit in the file
+- Convert find current will look for a unit on the current line
