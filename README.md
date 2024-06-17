@@ -26,6 +26,6 @@ return {
 
 ## Usage
 
-- There are only two commands, ```:ConvertFindCurrent``` & ```:ConvertFineNext```
+- There are only two commands, ```:ConvertFindCurrent``` & ```:ConvertFindNext```
 - Convert find next will look for the next convertable unit in the file
 - Convert find current will look for a unit on the current line
