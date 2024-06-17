@@ -16,8 +16,10 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y neovim
 
-    - name: Set up LuaRocks
+    - name: Set up lua
       uses: leafo/gh-actions-lua@v9
+
+    - name: Set up LuaRocks
       uses: leafo/gh-actions-luarocks@v4
 
     - name: Install dependencies
