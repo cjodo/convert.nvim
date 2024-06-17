@@ -1,5 +1,5 @@
 # convert.nvim
-![DEMO](https://asciinema.org/a/PBfD6Sl9UtZekedR4fuMNai6n)
+![demo](./assets/demo.gif)
 ## Dependencies
 - [nui.nvim](https://github.com/MunifTanjim/nui.nvim): UI Components
 
