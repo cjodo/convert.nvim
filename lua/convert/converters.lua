@@ -97,9 +97,6 @@ local converters = { -- pattern is like this: converters[from][to](value_from)
         rem = function(val)
             return val / base_font_size
         end,
-        em = function(val)
-            return val / base_font_size -- TODO: Not quite how this works but close enough for now
-        end,
         cm = function(val)
             return val * 0.0264583333
         end,
@@ -112,10 +109,6 @@ local converters = { -- pattern is like this: converters[from][to](value_from)
     },
     pt = {
         rem = function(val)
-            local px = val * (4 / 3)
-            return px / base_font_size
-        end,
-        em = function(val)
             local px = val * (4 / 3)
             return px / base_font_size
         end,
@@ -132,29 +125,6 @@ local converters = { -- pattern is like this: converters[from][to](value_from)
     rem = {
         px = function(val)
             return val * base_font_size
-        end,
-        em = function(val)
-            return val -- Assuming 1rem = 1em for simplicity
-        end,
-        cm = function(val)
-            local px = val * base_font_size
-            return px * 0.0264583333
-        end,
-        ['in'] = function(val)
-            local px = val * base_font_size
-            return px * 0.010417
-        end,
-        pt = function(val)
-            local px = val * base_font_size
-            return px * 0.74999943307122
-        end
-    },
-    em = {
-        px = function(val)
-            return val * base_font_size -- Assuming 1em = base_font_size in pixels
-        end,
-        rem = function(val)
-            return val -- Assuming 1em = 1rem for simplicity
         end,
         cm = function(val)
             local px = val * base_font_size
@@ -177,10 +147,6 @@ local converters = { -- pattern is like this: converters[from][to](value_from)
             local px = val * 3.7795275591
             return px / base_font_size
         end,
-        em = function(val)
-            local px = val * 3.7795275591
-            return px / base_font_size
-        end,
         cm = function(val)
             return val * 0.1
         end,
@@ -199,10 +165,6 @@ local converters = { -- pattern is like this: converters[from][to](value_from)
             local px = val * 37.795275591
             return px / base_font_size
         end,
-        em = function(val)
-            local px = val * 37.795275591
-            return px / base_font_size
-        end,
         mm = function(val)
             return val * 10
         end,
@@ -218,10 +180,6 @@ local converters = { -- pattern is like this: converters[from][to](value_from)
             return val * 96 -- 1 inch = 96 pixels (CSS standard)
         end,
         rem = function(val)
-            local px = val * 96
-            return px / base_font_size
-        end,
-        em = function(val)
             local px = val * 96
             return px / base_font_size
         end,
