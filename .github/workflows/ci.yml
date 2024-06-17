@@ -9,7 +9,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Install Neovim
       run: |
@@ -24,7 +24,7 @@ jobs:
 
     - name: Install dependencies
       run: 
-        luarocks install vusted
+        sudo luarocks install vusted
 
     - name: Run tests
       run: |
