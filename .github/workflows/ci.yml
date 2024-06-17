@@ -25,10 +25,6 @@ jobs:
     - name: Install dependencies
       run: 
         luarocks install vusted
-<<<<<<< HEAD
-        git clone https://github.com/notomo/vusted.git
-=======
->>>>>>> 7fa800b (Update test runner)
 
     - name: Run tests
       run: |
