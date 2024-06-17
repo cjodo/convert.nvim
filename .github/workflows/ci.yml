@@ -23,8 +23,8 @@ jobs:
       uses: leafo/gh-actions-luarocks@v4
 
     - name: Install dependencies
-      run: |
-        luarocks install busted
+      run: 
+        luarocks install vusted
         git clone https://github.com/notomo/vusted.git
 
     - name: Run tests
