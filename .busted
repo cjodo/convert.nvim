@@ -1,0 +1,13 @@
+return {
+	_all = {
+		lpath = "./lua/?.lua"
+	},
+	default = {
+		verbose = true
+	},
+	ciUnit = {
+		ROOT = { "./tests/convert/" },
+		verbose = true
+	}
+
+}
