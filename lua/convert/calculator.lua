@@ -1,4 +1,4 @@
-local converters = require('convert._converters')
+local converters = require('convert.converters')
 local utils = require("convert.utils")
 
 local M = {}

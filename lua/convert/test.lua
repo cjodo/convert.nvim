@@ -1,6 +1,5 @@
 local utils = require("convert.utils")
-
-local converters = require("convert._converters")
+local converters = require("convert.converters")
 
 local test_string = 'hsl(20, 20%, 20%)'
 
