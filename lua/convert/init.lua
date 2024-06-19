@@ -14,7 +14,7 @@ M.find_next = function()
 	local current_win = vim.api.nvim_get_current_win()
 	local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, true) -- All lines in current buffer
 
-	for row = cursor_pos.row, #lines, 1 do
+	for row = cursor_pos.row + 1, #lines, 1 do
 		if current_line ~= nil then
 			current_line = nil
 		end
