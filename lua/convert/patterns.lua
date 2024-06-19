@@ -9,11 +9,11 @@ local M = {
 	cm = "(%d+%.?%d*)cm",
 	pt = "(%d+%.?%d*)pt",
 	pc = "(%d+%.?%d*)pc",
-	-- TODO: better color handling
 	rgb = 'rgb%(%d+, %d+, %d+%)',
 	hex = "#(%x%x%x%x?%x?%x?%x?%x?)",
-	hsl = 'hsl%(%d+, %d+%%, %d+%%%)'
-
+	hsl = 'hsl%(%d+, %d+%%, %d+%%%)',
+	rgb_extract = 'rgb%(%s*(%d+)%s*,%s*(%d+)%s*,%s*(%d+)%s*%)',
+	hsl_extract = 'hsl%(%s*(%d+)%s*,%s*(%d+)%%%s*,%s*(%d+)%%%s*%)',
 }
 
 return M

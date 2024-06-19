@@ -1,24 +1,4 @@
-local parser = require("convert.parsers.parser")
-local utils = require("convert.utils")
-
-local file_path = vim.fn.expand('%')
-local cursor = utils.get_cursor_pos()
-
-local base_font_size = parser.base_font(file_path, cursor.row).size or 16
-
-local rgb_extract = 'rgb%(%s*(%d+)%s*,%s*(%d+)%s*,%s*(%d+)%s*%)'
-local hsl_extract = 'hsl%(%s*(%d+)%s*,%s*(%d+)%%%s*,%s*(%d+)%%%s*%)'
-
-local update = function()
-    base_font_size = parser.base_font(file_path, cursor.row + 1).size
-end
-
-vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter" }, {
-    pattern = { "*.css" },
-    callback = function()
-        update()
-    end
-})
+local state = require("convert.state")
 
 local function hex_to_rgb(val)
     local hex = val:gsub("#", "")

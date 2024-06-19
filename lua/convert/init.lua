@@ -1,13 +1,12 @@
 local utils = require("convert.utils")
 local ui = require("convert.ui.open_popup")
+local events = require("convert.events")
+
+events.setup()
 
 local M = {}
 
 local current_line = nil
-
-M.setup = function()
-
-end
 
 M.find_next = function()
 	local cursor_pos = utils.get_cursor_pos()

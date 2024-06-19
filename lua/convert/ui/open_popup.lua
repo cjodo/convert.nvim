@@ -55,7 +55,7 @@ M.open_win = function(found_unit)
     },
     size = {
       width = 40,
-      height = #lines,
+      height = 6,
     },
     border = {
       style = "rounded",

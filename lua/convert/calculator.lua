@@ -1,4 +1,4 @@
-local converters = require('convert.converters')
+local converters = require('convert._converters')
 local utils = require("convert.utils")
 
 local M = {}
@@ -7,6 +7,7 @@ local M = {}
 ---@param to string
 ---@param val number
 M.convert = function(from, to, val)
+	print(from, to, val)
 	if from == to then
 		if from == 'hex' then
 			return '#' .. val
@@ -25,7 +26,7 @@ M.convert = function(from, to, val)
 		round = 2
 	end
 
-	local res = converters[from][to](val)
+	local res = converters(from, to, val)
 
 	if to == 'rgb' or to == 'hsl' then
 		return res

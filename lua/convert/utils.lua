@@ -89,4 +89,8 @@ M.contains = function(table, value)
 	return false
 end
 
+M.get_file_extension = function(url)
+	return url:match("^.+(%..+)$")
+end
+
 return M
