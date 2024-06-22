@@ -37,6 +37,7 @@ local size_lines = {
 local M = {}
 
 M.open_win = function(found_unit)
+  print(found_unit.unit)
   local lines = nil
 
   if utils.contains(color_units, found_unit.unit) then

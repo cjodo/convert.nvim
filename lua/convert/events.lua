@@ -1,4 +1,4 @@
-local parser = require("convert.parsers.parser")
+local parser = require("convert.parsers.base_font")
 local utils = require("convert.utils")
 local state = require("convert.state")
 
@@ -16,7 +16,6 @@ M.setup = function()
 				state.set_base_font(16, 'px')
 				return
 			end
-
 			state.set_base_font(base_font.size, base_font.unit)
 		end
 	})

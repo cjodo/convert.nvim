@@ -119,7 +119,7 @@ end
 
 ---@param hsl string
 local function hsl_to_rgb(hsl)
-	local h, s, l = hsl:match(patterns.hsl_extract)
+	local h, s, l = hsl:match(patterns.extract.hsl_extract)
 	h = tonumber(h) / 360
 	s = tonumber(s) / 100
 	l = tonumber(l) / 100
@@ -148,13 +148,13 @@ local function hsl_to_rgb(hsl)
 end
 
 local function rgb_to_hex(rgb)
-	local r, g, b = rgb:match(patterns.rgb_extract)
+	local r, g, b = rgb:match(patterns.extract.rgb_extract)
 	local hex = string.format("%02X%02X%02X", r, g, b)
 	return hex
 end
 
 local function rgb_to_hsl(val)
-	local r, g, b = val:match(patterns.rgb_extract)
+	local r, g, b = val:match(patterns.extract.rgb_extract)
 	r = tonumber(r) / 255
 	g = tonumber(g) / 255
 	b = tonumber(b) / 255

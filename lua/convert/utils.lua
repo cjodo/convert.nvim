@@ -1,6 +1,7 @@
 local M = {}
 
-local units = require('convert.patterns')
+local patterns = require('convert.patterns')
+local units = patterns.matchers
 
 M.parse_base_font = function(file_path)
 	local file = io.open(file_path, "r")
@@ -13,14 +14,14 @@ M.parse_base_font = function(file_path)
 	file:close()
 
 	-- Pattern to match the font-size in body, :root, or * selector
-	local patterns = {
+	local root_patterns = {
 		"body%s*{%s*font%-size:%s*([%d%.]+)px%s*;?",
 		":root%s*{%s*font%-size:%s*([%d%.]+)px%s*;?",
 		"%*%s*{%s*font%-size:%s*([%d%.]+)px%s*;?"
 	}
 
 	-- Try to find the font size using the patterns
-	for _, pattern in ipairs(patterns) do
+	for _, pattern in ipairs(root_patterns) do
 		local size = content:match(pattern)
 		if size then
 			return tonumber(size)
