@@ -30,7 +30,6 @@ M.base_font = function(file_path, cursor_row) -- if no font is found until curso
 
 		if current_row > cursor_row then
 			file:close()
-			print("cursor_row", size, unit)
 			return {
 				size = size,
 				unit = unit

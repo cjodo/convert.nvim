@@ -7,7 +7,6 @@ local M = {}
 ---@param to string
 ---@param val number
 M.convert = function(from, to, val)
-	print(from, to, val)
 	if from == to then
 		if from == 'hex' then
 			return '#' .. val
