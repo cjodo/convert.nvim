@@ -8,14 +8,9 @@ local selectors = {
 
 local font_size_pattern = "font%-size:%s*([%d%.]+)([pxrem]*)"
 
--- Unused
-
-function GetFileExtension(url)
-	return url:match("^.+(%..+)$")
-end
 
 ---@return table | nil
-M.base_font = function(file_path, max_row) -- if no font is found until cursor pos, then no more checks are needed
+M.base_font = function(file_path, cursor_row) -- if no font is found until cursor pos, then no more checks are needed
 	local file = io.open(file_path, 'r')
 
 	if not file then
@@ -28,16 +23,16 @@ M.base_font = function(file_path, max_row) -- if no font is found until cursor p
 	local size = 16
 	local unit = 'px'
 
-	local row = 1
+	local current_row = 1
 
 	for line in file:lines() do
-		row = row + 1
+		current_row = current_row + 1
 
-		if row > max_row then
+		if current_row > cursor_row then
 			file:close()
 			return {
-				size = size or 16,
-				unit = unit or 'px'
+				size = size,
+				unit = unit
 			}
 		end
 

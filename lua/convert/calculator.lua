@@ -25,7 +25,7 @@ M.convert = function(from, to, val)
 		round = 2
 	end
 
-	local res = converters[from][to](val)
+	local res = converters(from, to, val)
 
 	if to == 'rgb' or to == 'hsl' then
 		return res
