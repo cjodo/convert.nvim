@@ -1,10 +1,18 @@
 local utils = require("convert.utils")
 local ui = require("convert.ui.open_popup")
 local events = require("convert.events")
+local config = require("convert.config")
 
 events.setup()
 
 local M = {}
+
+M.setup = function(opts)
+	print("hello from setup")
+	if opts then
+		config.keymaps = opts.keymaps
+	end
+end
 
 M.find_next = function()
 	local cursor_pos = utils.get_cursor_pos()

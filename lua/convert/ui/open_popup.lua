@@ -1,6 +1,7 @@
 local Menu = require("nui.menu")
 local calculator = require("convert.calculator")
 local utils = require("convert.utils")
+local config = require("convert.config")
 
 local size_units = {
   'px',
@@ -76,12 +77,7 @@ M.open_win = function(found_unit)
     lines = lines,
 
     max_width = 100,
-    keymap = {
-      focus_next = { "j", "<Down>", "<Tab>" },
-      focus_prev = { "k", "<Up>", "<S-Tab>" },
-      close = { "<Esc>", "<C-c>", 'qq' },
-      submit = { "<CR>", "<Space>" },
-    },
+    keymap = config.keymaps,
     on_submit = function(item)
       local from_unit = found_unit.unit
       local to_unit = item.text
