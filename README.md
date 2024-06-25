@@ -5,7 +5,7 @@
 
 ## Features
 - Convert css units with one simple command
-- track base font size to convert px to rems effortlessly (Single file support only)
+- track base font size on save to convert px to rems accurately (Single file support only)
 
 ## Installation: 
 Use your favourite plugin manager
