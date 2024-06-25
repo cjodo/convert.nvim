@@ -18,13 +18,13 @@ local color_units = {
   'hsl'
 }
 
-local color_lines = {
+local color_menu = {
   Menu.item('rgb'),
   Menu.item('hex'),
   Menu.item('hsl'),
 }
 
-local size_lines = {
+local size_menu = {
   Menu.item('px'),
   Menu.item('rem'),
   Menu.item('cm'),
@@ -40,11 +40,11 @@ M.open_win = function(found_unit)
   local lines = nil
 
   if utils.contains(color_units, found_unit.unit) then
-    lines = color_lines
+    lines = color_menu
   end
 
   if utils.contains(size_units, found_unit.unit) then
-    lines = size_lines
+    lines = size_menu
   end
 
   local popup_opts = {
