@@ -6,7 +6,7 @@ local M = {}
 
 M.setup = function()
 	vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter", "BufNew" }, {
-		pattern = { "*.css" },
+		pattern = { "*.css", "*.scss", "*.tsx", "*.ts", "*.js", "*.jsx" },
 		callback = function()
 			local file_path = vim.fn.expand('%')
 			local cursor = utils.get_cursor_pos()
