@@ -14,7 +14,7 @@ M.convert = function(from, to, val)
 		end
 
 		if (from == 'rgb') then
-			return val
+			return tostring(val)
 		end
 
 		return val .. from
