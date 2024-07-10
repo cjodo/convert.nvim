@@ -37,11 +37,9 @@ describe("Unit Conversions", function()
 				round = 0
 			end
 
-
 			it(string.format("Should convert %s, to %s", from_unit, to_unit), function()
 				local converted = utils.round(converters(from_unit, to_unit, value), round)
-				assert.are.equal(converted, size_values[to_unit])
-				print(from_unit, to_unit, converted)
+				assert.are.equal(size_values[to_unit], converted)
 			end)
 		end
 		::continue::

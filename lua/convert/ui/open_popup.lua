@@ -61,7 +61,7 @@ M.open_win = function(found_unit)
     border = {
       style = "rounded",
       text = {
-        top = "[Convert " .. found_unit.val .. found_unit.unit .. " To]",
+        top = "[Convert " .. found_unit.val .. " To]",
         top_align = "center"
       },
     },

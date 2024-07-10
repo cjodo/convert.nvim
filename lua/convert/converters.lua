@@ -162,6 +162,14 @@ converters['in'] = {
 
 local function hex_to_rgb(val)
 	local hex = val:gsub("#", "")
+
+	if #hex == 3 then
+		local r = tonumber(hex:sub(1, 1) .. hex:sub(1, 1), 16)
+		local g = tonumber(hex:sub(2, 2) .. hex:sub(2, 2), 16)
+		local b = tonumber(hex:sub(3, 3) .. hex:sub(3, 3), 16)
+		return string.format("rgb(%d, %d, %d)", r, g, b)
+	end
+
 	local r = tonumber(hex:sub(1, 2), 16)
 	local g = tonumber(hex:sub(3, 4), 16)
 	local b = tonumber(hex:sub(5, 6), 16)
