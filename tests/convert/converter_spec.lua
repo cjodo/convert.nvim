@@ -13,7 +13,7 @@ local units = {
 
 local size_values = {
 	px = 16,
-	rem = 1,
+	rem = 1.0,
 	mm = 4.23,
 	['in'] = 0.17,
 	cm = 0.42,
@@ -26,20 +26,20 @@ describe("Unit Conversions", function()
 		for i = 1, #units, 1 do
 			local round = 2
 
-			if to_unit == 'px' then
-				round = 0
-			end
-
-			local from_unit = unit
 			local to_unit = units[i]
+			local from_unit = unit
+
 			if from_unit == to_unit then
 				goto continue
 			end
 
+			if to_unit == 'px' or to_unit == 'rem' then
+				round = 0
+			end
+
 			it(string.format("Should convert %s, to %s", from_unit, to_unit), function()
 				local converted = utils.round(converters(from_unit, to_unit, value), round)
-				print(from_unit, to_unit, converted)
-				assert.are.equal(converted, utils.round(size_values[to_unit], round))
+				assert.are.equal(size_values[to_unit], converted)
 			end)
 		end
 		::continue::
