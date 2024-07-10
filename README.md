@@ -5,7 +5,7 @@
 
 ## Features
 - Convert css units with one simple command
-- track base font size to convert px to rems effortlessly (Single file support only)
+- track base font size on save to convert px to rems accurately (Single file support only)
 
 ## Installation: 
 Use your favourite plugin manager
@@ -17,14 +17,34 @@ return {
   dependencies = {
     'MunifTanjim/nui.nvim'
   },
-  config = function()
-    vim.keymap.set("n", "<leader>cn", "<cmd>ConvertFindNext<CR>", { desc = "Find next convertable unit" })
-    vim.keymap.set("n", "<leader>cc", "<cmd>ConvertFindCurrent<CR>", { desc = "Find convertable unit in current line" })
-  end
+  keys = {
+    { "<leader>cn", "<cmd>ConvertFindNext<CR>", desc = "Find next convertable unit" },
+    { "<leader>cc", "<cmd>ConvertFindCurrent<CR>", desc = "Find convertable unit in current line" },
+  },
 }
 ```
 
 ## Usage
+You can choose you're own custom keys for the ui menu
+```lua
+  config = function()
+    local convert = require('convert')
+    -- defaults
+    convert.setup({
+      keymaps = {
+        focus_next = { "j", "<Down>", "<Tab>" },
+        focus_prev = { "k", "<Up>", "<S-Tab>" },
+        close = { "<Esc>", "<C-c>", 'qq' },
+        submit = { "<CR>", "<Space>" },
+      }
+    })
+
+    vim.keymap.set("n", "<leader>cn", "<cmd>ConvertFindNext<CR>", { desc = "Find next convertable unit" })
+    vim.keymap.set("n", "<leader>cc", "<cmd>ConvertFindCurrent<CR>", { desc = "Find convertable unit in current line" })
+  end
+
+```
+
 
 - There are only two commands, ```:ConvertFindCurrent``` & ```:ConvertFindNext```
 - Convert find next will look for the next convertable unit in the file

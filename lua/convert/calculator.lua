@@ -6,6 +6,7 @@ local M = {}
 ---@param from string
 ---@param to string
 ---@param val number
+---@return string
 M.convert = function(from, to, val)
 	if from == to then
 		if from == 'hex' then
@@ -13,7 +14,7 @@ M.convert = function(from, to, val)
 		end
 
 		if (from == 'rgb') then
-			return val
+			return tostring(val)
 		end
 
 		return val .. from

@@ -15,6 +15,12 @@ converters['px'] = {
 	end,
 	pt = function(val)
 		return val * 0.74999943307122
+	end,
+	mm = function(val)
+		return val * 0.264583333
+	end,
+	pc = function(val)
+		return val * 0.0625
 	end
 }
 
@@ -31,6 +37,34 @@ converters['pt'] = {
 	end,
 	px = function(val)
 		return val * (4 / 3)
+	end,
+	mm = function(val)
+		return val * 0.352778
+	end,
+	pc = function(val)
+		return val * 0.0833333
+	end
+}
+
+converters.pc = {
+	px = function(val)
+		return val * 16 -- 1 pica = 16 pixels (typographical points)
+	end,
+	rem = function(val)
+		local px = val * 16
+		return px / state.get_base_font().size
+	end,
+	cm = function(val)
+		return val * 0.423333 -- 1 pica = 0.423333 centimeters
+	end,
+	['in'] = function(val)
+		return val * 0.1666667 -- 1 pica = 1/6 inch
+	end,
+	pt = function(val)
+		return val * 12 -- 1 pica = 12 points
+	end,
+	mm = function(val)
+		return val * 4.23333 -- 1 pica = 4.23333 millimeters
 	end
 }
 
@@ -49,6 +83,14 @@ converters.rem = {
 	pt = function(val)
 		local px = val * state.get_base_font().size
 		return px * 0.74999943307122
+	end,
+	mm = function(val)
+		local px = val * state.get_base_font().size
+		return px * 0.264583333
+	end,
+	pc = function(val)
+		local px = val * state.get_base_font().size
+		return px * 0.0625
 	end
 }
 
@@ -68,6 +110,9 @@ converters.mm = {
 	end,
 	pt = function(val)
 		return val * 2.8346456693
+	end,
+	pc = function(val)
+		return val * 0.2362204724
 	end
 }
 
@@ -87,6 +132,9 @@ converters.cm = {
 	end,
 	pt = function(val)
 		return val * 28.346456693
+	end,
+	pc = function(val)
+		return val * 2.3622047244
 	end
 }
 
@@ -106,11 +154,22 @@ converters['in'] = {
 	end,
 	pt = function(val)
 		return val * 72 -- 1 inch = 72 points (typographical points)
+	end,
+	pc = function(val)
+		return val * 6 -- 1 inch = 6 picas
 	end
 }
 
 local function hex_to_rgb(val)
 	local hex = val:gsub("#", "")
+
+	if #hex == 3 then
+		local r = tonumber(hex:sub(1, 1) .. hex:sub(1, 1), 16)
+		local g = tonumber(hex:sub(2, 2) .. hex:sub(2, 2), 16)
+		local b = tonumber(hex:sub(3, 3) .. hex:sub(3, 3), 16)
+		return string.format("rgb(%d, %d, %d)", r, g, b)
+	end
+
 	local r = tonumber(hex:sub(1, 2), 16)
 	local g = tonumber(hex:sub(3, 4), 16)
 	local b = tonumber(hex:sub(5, 6), 16)
