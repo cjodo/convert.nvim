@@ -17,10 +17,10 @@ return {
   dependencies = {
     'MunifTanjim/nui.nvim'
   },
-  config = function()
-    vim.keymap.set("n", "<leader>cn", "<cmd>ConvertFindNext<CR>", { desc = "Find next convertable unit" })
-    vim.keymap.set("n", "<leader>cc", "<cmd>ConvertFindCurrent<CR>", { desc = "Find convertable unit in current line" })
-  end
+  keys = {
+    { "<leader>cn", "<cmd>ConvertFindNext<CR>", desc = "Find next convertable unit" },
+    { "<leader>cc", "<cmd>ConvertFindCurrent<CR>", desc = "Find convertable unit in current line" },
+  },
 }
 ```
 
