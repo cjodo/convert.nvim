@@ -44,6 +44,10 @@ You can choose you're own custom keys for the ui menu
 ```
 
 
-- There are only two commands, ```:ConvertFindCurrent``` & ```:ConvertFindNext```
-- Convert find next will look for the next convertable unit in the file
-- Convert find current will look for a unit on the current line
+## Commands:
+
+| Command             | Description                                                               |
+|---------------------|---------------------------------------------------------------------------|
+| :ConvertFindNext     | Finds the next convertible unit                                           |
+| :ConvertFindCurrent  | Finds the convertible unit in the current line                            |
+| :ConvertAll          | Converts all instances of a given unit to another                         |
