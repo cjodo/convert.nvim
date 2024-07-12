@@ -10,7 +10,6 @@ events.setup()
 local M = {}
 
 M.setup = function(opts)
-	print("hello from setup")
 	if opts then
 		config.keymaps = opts.keymaps
 	end

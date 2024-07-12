@@ -33,9 +33,6 @@ local left_options = {
       top_align = "center"
     },
   },
-  prepare_item = function(item)
-    print(item)
-  end
 }
 
 local right_options = {
@@ -76,7 +73,6 @@ M.open_split = function()
     keymap = config.keymaps,
     on_change = function(item)
       origin_unit = item.text
-      print(origin_unit)
     end,
     on_submit = function(item)
       origin_unit = item.text
