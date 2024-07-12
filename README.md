@@ -20,6 +20,7 @@ return {
   keys = {
     { "<leader>cn", "<cmd>ConvertFindNext<CR>", desc = "Find next convertable unit" },
     { "<leader>cc", "<cmd>ConvertFindCurrent<CR>", desc = "Find convertable unit in current line" },
+    { "<leader>ca", "<cmd>ConvertAll<CR>", desc = "Convert all of a specified unit" },
   },
 }
 ```
@@ -38,9 +39,6 @@ You can choose you're own custom keys for the ui menu
         submit = { "<CR>", "<Space>" },
       }
     })
-
-    vim.keymap.set("n", "<leader>cn", "<cmd>ConvertFindNext<CR>", { desc = "Find next convertable unit" })
-    vim.keymap.set("n", "<leader>cc", "<cmd>ConvertFindCurrent<CR>", { desc = "Find convertable unit in current line" })
   end
 
 ```

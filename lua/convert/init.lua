@@ -3,6 +3,8 @@ local ui = require("convert.ui.open_popup")
 local events = require("convert.events")
 local config = require("convert.config")
 
+local split = require("convert.ui.open_split")
+
 events.setup()
 
 local M = {}
@@ -46,6 +48,10 @@ M.find_current = function()
 		vim.api.nvim_win_set_cursor(current_win, { cursor_pos.row, found_unit.start_col - 1 })
 		ui.open_win(found_unit)
 	end
+end
+
+M.convert_all = function()
+	split.open_split()
 end
 
 return M
