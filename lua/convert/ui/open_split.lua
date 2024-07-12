@@ -1,11 +1,20 @@
 local Layout = require("nui.layout")
 local Menu = require("nui.menu")
 local convert_all = require("convert.convert_all")
+local config = require('convert.config')
 
 local units_menu = {
+  Menu.separator('Colors', {
+    char = '-',
+    text_align = 'left'
+  }),
   Menu.item('rgb'),
   Menu.item('hex'),
   Menu.item('hsl'),
+  Menu.separator('Size', {
+    char = '-',
+    text_align = 'left'
+  }),
   Menu.item('px'),
   Menu.item('rem'),
   Menu.item('cm'),
@@ -18,7 +27,7 @@ local units_menu = {
 local left_options = {
   enter = true,
   border = {
-    style = "single",
+    style = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
     text = {
       top = "[Origin]",
       top_align = "center"
@@ -33,7 +42,7 @@ local right_options = {
   enter = false,
   focusable = true,
   border = {
-    style = "single",
+    style = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
     text = {
       top = "[To Unit]",
       top_align = "center"
@@ -49,6 +58,7 @@ local M = {}
 M.open_split = function()
   local right_menu = Menu(right_options, {
     lines = units_menu,
+    keymap = config.keymaps,
     on_submit = function(item)
       if origin_unit == nil then
         error("Origin unit not defined")
@@ -63,6 +73,7 @@ M.open_split = function()
 
   local left_menu = Menu(left_options, {
     lines = units_menu,
+    keymap = config.keymaps,
     on_change = function(item)
       origin_unit = item.text
       print(origin_unit)

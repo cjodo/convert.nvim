@@ -17,7 +17,7 @@ local convert_all = function(bufnr, from, to)
 		to_type = 'size'
 	end
 	if from_type ~= to_type then
-		print(string.format("Can't convert %s to %s", from_type, to_type))
+		print(string.format("Can't convert %s to %s units", from_type, to_type))
 		return
 	end
 
