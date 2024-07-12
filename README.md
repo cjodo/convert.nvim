@@ -20,6 +20,7 @@ return {
   config = function()
     vim.keymap.set("n", "<leader>cn", "<cmd>ConvertFindNext<CR>", { desc = "Find next convertable unit" })
     vim.keymap.set("n", "<leader>cc", "<cmd>ConvertFindCurrent<CR>", { desc = "Find convertable unit in current line" })
+    vim.keymap.set("n", "<leader>ca", "<cmd>ConvertAll<CR>", { desc = "Convert All" })
   end
 }
 ```
@@ -41,6 +42,7 @@ You can choose you're own custom keys for the ui menu
 
     vim.keymap.set("n", "<leader>cn", "<cmd>ConvertFindNext<CR>", { desc = "Find next convertable unit" })
     vim.keymap.set("n", "<leader>cc", "<cmd>ConvertFindCurrent<CR>", { desc = "Find convertable unit in current line" })
+    vim.keymap.set("n", "<leader>ca", "<cmd>ConvertAll<CR>", { desc = "Convert All" })
   end
 
 ```
