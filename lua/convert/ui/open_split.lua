@@ -100,19 +100,11 @@ M.open_split = function()
 
   layout:mount()
 
+  vim.cmd("highlight CursorLine guibg=DarkGrey guifg=Black")
 
   vim.keymap.set('n', "<CR>", function()
     vim.api.nvim_set_current_buf(right_menu.bufnr)
   end, { buffer = left_menu.bufnr })
-end
-
-M.get_selected = function()
-  if origin_unit ~= nil and to_unit ~= nil then
-    return {
-      origin_unit = origin_unit,
-      to_unit = to_unit
-    }
-  end
 end
 
 return M
