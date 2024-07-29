@@ -48,8 +48,8 @@ You can choose you're own custom keys for the ui menu
 
 ## Commands:
 
-| Command             | Description                                                               |
-|---------------------|---------------------------------------------------------------------------|
+| Command              | Description                                                               |
+|----------------------|---------------------------------------------------------------------------|
 | :ConvertFindNext     | Finds the next convertible unit                                           |
-| :ConvertFindCurrent  | Finds the convertible unit in the current line                            |
+| :ConvertFindCurrent  | Finds the convertible unit in the current line (starting from cursor)     |
 | :ConvertAll          | Converts all instances of a given unit to another                         |

@@ -79,11 +79,6 @@ M.open_split = function()
     end
   })
 
-  left_menu:map('n', '<CR>', function()
-
-  end, { noremap = true })
-
-
   local layout = Layout(
     {
       position = "50%",
