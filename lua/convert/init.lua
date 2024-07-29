@@ -42,9 +42,8 @@ M.find_current = function()
 	local current_line = vim.api.nvim_get_current_line()
 
 	local line = current_line:sub(cursor_pos.col, #current_line)
-	-- pad the front with spaces = difference in current_line and line length
+
 	line = string.rep(" ", #current_line - #line) .. line
-	print(line)
 
 	local found_unit = utils.find_unit_in_line(line, cursor_pos.row)
 
