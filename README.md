@@ -1,11 +1,13 @@
 # convert.nvim
-![demo](./assets/demo.gif)
+
+https://github.com/user-attachments/assets/46129dd1-35b0-41ce-a1d8-ead1922d8af4
+
 ## Dependencies
 - [nui.nvim](https://github.com/MunifTanjim/nui.nvim): UI Components
 
 ## Features
 - Convert css units with one simple command
-- track base font size to convert px to rems effortlessly (Single file support only)
+- track base font size on save to convert px to rems accurately (Single file support only)
 
 ## Installation: 
 Use your favourite plugin manager
@@ -17,10 +19,11 @@ return {
   dependencies = {
     'MunifTanjim/nui.nvim'
   },
-  config = function()
-    vim.keymap.set("n", "<leader>cn", "<cmd>ConvertFindNext<CR>", { desc = "Find next convertable unit" })
-    vim.keymap.set("n", "<leader>cc", "<cmd>ConvertFindCurrent<CR>", { desc = "Find convertable unit in current line" })
-  end
+  keys = {
+    { "<leader>cn", "<cmd>ConvertFindNext<CR>", desc = "Find next convertable unit" },
+    { "<leader>cc", "<cmd>ConvertFindCurrent<CR>", desc = "Find convertable unit in current line" },
+    { "<leader>ca", "<cmd>ConvertAll<CR>", desc = "Convert all of a specified unit" },
+  },
 }
 ```
 
@@ -38,14 +41,15 @@ You can choose you're own custom keys for the ui menu
         submit = { "<CR>", "<Space>" },
       }
     })
-
-    vim.keymap.set("n", "<leader>cn", "<cmd>ConvertFindNext<CR>", { desc = "Find next convertable unit" })
-    vim.keymap.set("n", "<leader>cc", "<cmd>ConvertFindCurrent<CR>", { desc = "Find convertable unit in current line" })
   end
 
 ```
 
 
-- There are only two commands, ```:ConvertFindCurrent``` & ```:ConvertFindNext```
-- Convert find next will look for the next convertable unit in the file
-- Convert find current will look for a unit on the current line
+## Commands:
+
+| Command              | Description                                                               |
+|----------------------|---------------------------------------------------------------------------|
+| :ConvertFindNext     | Finds the next convertible unit                                           |
+| :ConvertFindCurrent  | Finds the convertible unit in the current line (starting from cursor)     |
+| :ConvertAll          | Converts all instances of a given unit to another                         |

@@ -4,7 +4,7 @@ local utils = require("lua/convert.utils")
 local units = {
 	'px',
 	'rem',
-	'mm',
+	-- 'mm',
 	'in',
 	'cm',
 	'pc',
@@ -14,7 +14,7 @@ local units = {
 local size_values = {
 	px = 16,
 	rem = 1.0,
-	mm = 4.23,
+	-- mm = 4.23,
 	['in'] = 0.17,
 	cm = 0.42,
 	pc = 1,
