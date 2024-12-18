@@ -1,13 +1,21 @@
 local parser = require("convert.parsers.base_font")
 local utils = require("convert.utils")
 local state = require("convert.state")
+local config = require("convert.config")
 
 local M = {}
 
+local events = {
+	"BufWritePost",
+	"BufEnter",
+	"BufNew"
+}
+
 M.setup = function()
-	vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter", "BufNew" }, {
-		pattern = { "*.css", "*.scss", "*.tsx", "*.ts", "*.js", "*.jsx" },
-		callback = function()
+	vim.api.nvim_create_autocmd(events, {
+		pattern = config.patterns,
+		callback = function(e)
+			vim.inspect(e)
 			local file_path = vim.fn.expand('%')
 			local cursor = utils.get_cursor_pos()
 			local base_font = parser.base_font(file_path, cursor.row)
