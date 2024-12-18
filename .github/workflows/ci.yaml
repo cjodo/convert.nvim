@@ -1,7 +1,7 @@
 name: Busted
 on: [push, pull_request]
 jobs:
-  sile:
+  tests:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
