@@ -3,24 +3,27 @@ local ui = require("convert.ui.open_popup")
 local events = require("convert.events")
 local config = require("convert.config")
 
-local split = require("convert.ui.open_split")
-
-events.setup()
 
 local M = {}
 
 M.setup = function(opts)
-	if opts then
+	events.setup()
+
+	if opts.keymaps then
 		config.keymaps = opts.keymaps
+	end
+
+	if opts.patterns then
+		config.patterns = utils.merge(config.patterns, opts.patterns)
 	end
 end
 
 M.find_next = function()
-	local cursor_pos = utils.get_cursor_pos()
-	local bufnr = vim.api.nvim_get_current_buf()
+	local cursor_pos = 	utils.get_cursor_pos()
+	local bufnr = 			vim.api.nvim_get_current_buf()
 	local current_win = vim.api.nvim_get_current_win()
-	local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, true) -- All lines in current buffer
-	local next_row = cursor_pos.row + 1                         -- next row
+	local lines = 			vim.api.nvim_buf_get_lines(bufnr, 0, -1, true) -- All lines in current buffer
+	local next_row = 		cursor_pos.row + 1
 
 	for row = next_row, #lines, 1 do
 		local line = lines[row]

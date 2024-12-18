@@ -259,7 +259,7 @@ converters.hsl = {
 	end
 }
 
-local function get_converter(from, to, val)
+local function convert(from, to, val)
 	if converters[from] and converters[from][to] then
 		return converters[from][to](val)
 	else
@@ -267,4 +267,4 @@ local function get_converter(from, to, val)
 	end
 end
 
-return get_converter
+return convert
