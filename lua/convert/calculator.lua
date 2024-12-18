@@ -1,7 +1,8 @@
-local converters = require('convert.converters')
+local convert = require('convert.converters')
 local utils = require("convert.utils")
 
 local M = {}
+
 
 ---@param from string
 ---@param to string
@@ -26,17 +27,17 @@ M.convert = function(from, to, val)
 		round = 2
 	end
 
-	local res = converters(from, to, val)
+	local result = convert(from, to, val)
 
 	if to == 'rgb' or to == 'hsl' then
-		return res
+		return result
 	end
 
 	if to == 'hex' then
-		return "#" .. res
+		return "#" .. result
 	end
 
-	return tostring(utils.round(res, round)) .. to
+	return tostring(utils.round(result, round)) .. to
 end
 
 return M
