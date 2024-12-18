@@ -45,7 +45,7 @@ M.find_current = function()
 
 	local current_line = vim.api.nvim_get_current_line()
 
-	local line = current_line:sub(cursor_pos.col, #current_line)
+	local line = current_line:sub(0, #current_line)
 
 	line = string.rep(" ", #current_line - #line) .. line
 
