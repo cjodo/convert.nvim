@@ -1,11 +1,8 @@
-local M = {
-	---@class base_font
-	---@field size number
-	---@field unit string
-	base_font = {
-		size = 16,
-		unit = 'px',
-	}
+local M = {}
+
+M.base_font = {
+	size = 16,
+	unit = 'px',
 }
 
 ---@param size number

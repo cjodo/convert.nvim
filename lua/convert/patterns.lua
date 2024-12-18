@@ -1,4 +1,3 @@
---FUNCK REGEX
 local M = {}
 
 M.matchers = {

@@ -14,6 +14,7 @@ M.base_font = function(file_path, cursor_row) -- if no font is found until curso
 	local file = io.open(file_path, 'r')
 
 	if not file then
+		error("file not found")
 		return nil
 	end
 
@@ -60,6 +61,7 @@ M.base_font = function(file_path, cursor_row) -- if no font is found until curso
 		end
 	end
 
+	print(size)
 	return {
 		size = size,
 		unit = 'px'
