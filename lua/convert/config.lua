@@ -8,4 +8,6 @@ config.keymaps = {
 	submit = { "<CR>", "<Space>" },
 }
 
+config.patterns = { "*.css", "*.scss", "*.tsx", "*.ts", "*.js", "*.jsx" }
+
 return config
