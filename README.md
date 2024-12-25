@@ -7,7 +7,7 @@ https://github.com/user-attachments/assets/46129dd1-35b0-41ce-a1d8-ead1922d8af4
 
 ## Features
 - Convert css units with one simple command
-- track base font size on save to convert px to rems accurately (Single file support only)
+- Base font supported for accurate rem conversion
 
 ## Installation: 
 Use your favourite plugin manager
