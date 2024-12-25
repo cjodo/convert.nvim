@@ -12,6 +12,7 @@ local font_size_pattern = "font%-size:%s*([%d%.]+)([pxrem]*)"
 ---@field size integer
 ---@field unit string
 
+---returns base font in px. Parsed from body, :root, *, selectors only
 ---@return base_font
 M.base_font = function(cursor_row) -- if no font is found until cursor pos, then no more checks are needed
 	local bufnr = 			vim.api.nvim_get_current_buf()
