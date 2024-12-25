@@ -1,14 +1,11 @@
 local utils = require("convert.utils")
 local ui = require("convert.ui.open_popup")
-local events = require("convert.events")
 local config = require("convert.config")
 
 
 local M = {}
 
 M.setup = function(opts)
-	events.setup()
-
 	if opts.keymaps then
 		config.keymaps = opts.keymaps
 	end

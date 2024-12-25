@@ -4,34 +4,6 @@ local patterns = require('convert.patterns')
 
 local units = patterns.matchers
 
-M.parse_base_font = function(file_path)
-	local file = io.open(file_path, "r")
-	if not file then
-		return nil, "Failed to open file"
-	end
-
-	-- Read the file contents
-	local content = file:read("*all")
-	file:close()
-
-	-- Pattern to match the font-size in body, :root, or * selector
-	local root_patterns = {
-		"body%s*{%s*font%-size:%s*([%d%.]+)px%s*;?",
-		":root%s*{%s*font%-size:%s*([%d%.]+)px%s*;?",
-		"%*%s*{%s*font%-size:%s*([%d%.]+)px%s*;?"
-	}
-
-	-- Try to find the font size using the patterns
-	for _, pattern in ipairs(root_patterns) do
-		local size = content:match(pattern)
-		if size then
-			return tonumber(size)
-		end
-	end
-
-	return nil, "Font size not found in body, :root, or * selector"
-end
-
 M.get_cursor_pos = function()
 	local r, c = unpack(vim.api.nvim_win_get_cursor(0))
 
