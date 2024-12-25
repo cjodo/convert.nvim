@@ -1,11 +1,10 @@
---FUNCK REGEX
 local M = {}
 
 M.matchers = {
 	px = "(%d+%.?%d*)px",
 	rem = "(%d+%.?%d*)rem",
 	em = "(%d+%.?%d*)em",
-	['in'] = "(%d+%.?%d*)in",
+	['in'] = "(%d+%.?%d*)in", -- in is a reserved lua keyword
 	ch = "(%d+%.?%d*)ch",
 	mm = "(%d+%.?%d*)mm",
 	cm = "(%d+%.?%d*)cm",
