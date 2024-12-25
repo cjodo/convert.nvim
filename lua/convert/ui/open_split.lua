@@ -95,7 +95,6 @@ M.open_split = function(config)
   layout:mount()
 
   vim.keymap.set('n', "<CR>", function()
-		print(vim.inspect(right_menu))
     vim.api.nvim_set_current_buf(right_menu.bufnr)
   end, { buffer = left_menu.bufnr })
 end
