@@ -31,8 +31,8 @@ local convert_all = function(bufnr, from, to)
 		if found_unit ~= nil and found_unit.unit == from then
 			local converted = calculator.convert(from, to, found_unit.val)
 
-			vim.api.nvim_buf_set_text(bufnr, found_unit.row - 1, found_unit.start_col - 1, found_unit.row - 1,
-				found_unit.end_col,
+			vim.api.nvim_buf_set_text(bufnr, found_unit.pos.row - 1, found_unit.pos.start_col - 1, found_unit.pos.row - 1,
+				found_unit.pos.end_col,
 				{ converted })
 		end
 	end

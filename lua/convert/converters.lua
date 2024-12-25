@@ -1,11 +1,13 @@
 local patterns = require("convert.patterns")
-local state = require("convert.state")
+local utils = require("convert.utils")
+local parsers = require("convert.parsers.base_font")
 
 local converters = {}
 
 converters['px'] = {
 	rem = function(val)
-		return val / state.get_base_font().size
+		local base_font = parsers.base_font(utils.get_cursor_pos().row)
+		return val / base_font.size
 	end,
 	cm = function(val)
 		return val * 0.0264583333
@@ -26,8 +28,10 @@ converters['px'] = {
 
 converters['pt'] = {
 	rem = function(val)
+		local base_font = parsers.base_font(utils.get_cursor_pos().row)
 		local px = val * (4 / 3)
-		return px / state.get_base_font().size
+
+		return px / base_font.size
 	end,
 	cm = function(val)
 		return val * 0.0352778
@@ -51,8 +55,10 @@ converters.pc = {
 		return val * 16 -- 1 pica = 16 pixels (typographical points)
 	end,
 	rem = function(val)
+		local base_font = parsers.base_font(utils.get_cursor_pos().row)
 		local px = val * 16
-		return px / state.get_base_font().size
+
+		return px / base_font.size
 	end,
 	cm = function(val)
 		return val * 0.423333 -- 1 pica = 0.423333 centimeters
@@ -70,26 +76,33 @@ converters.pc = {
 
 converters.rem = {
 	px = function(val)
-		return val * state.get_base_font().size
+		local base_font = parsers.base_font(utils.get_cursor_pos().row)
+
+		return val * base_font.size
 	end,
 	cm = function(val)
-		local px = val * state.get_base_font().size
+		local base_font = parsers.base_font(utils.get_cursor_pos().row)
+		local px = val * base_font.size
 		return px * 0.0264583333
 	end,
 	['in'] = function(val)
-		local px = val * state.get_base_font().size
+		local base_font = parsers.base_font(utils.get_cursor_pos().row)
+		local px = val * base_font.size
 		return px * 0.010417
 	end,
 	pt = function(val)
-		local px = val * state.get_base_font().size
+		local base_font = parsers.base_font(utils.get_cursor_pos().row)
+		local px = val * base_font.size
 		return px * 0.74999943307122
 	end,
 	mm = function(val)
-		local px = val * state.get_base_font().size
+		local base_font = parsers.base_font(utils.get_cursor_pos().row)
+		local px = val * base_font.size
 		return px * 0.264583333
 	end,
 	pc = function(val)
-		local px = val * state.get_base_font().size
+		local base_font = parsers.base_font(utils.get_cursor_pos().row)
+		local px = val * base_font.size
 		return px * 0.0625
 	end
 }
@@ -100,7 +113,8 @@ converters.mm = {
 	end,
 	rem = function(val)
 		local px = val * 3.7795275591
-		return px / state.get_base_font().size
+		local base_font = parsers.base_font(utils.get_cursor_pos().row)
+		return px / base_font.size
 	end,
 	cm = function(val)
 		return val * 0.1
@@ -122,7 +136,8 @@ converters.cm = {
 	end,
 	rem = function(val)
 		local px = val * 37.795275591
-		return px / state.get_base_font().size
+		local base_font = parsers.base_font(utils.get_cursor_pos().row)
+		return px / base_font.size
 	end,
 	mm = function(val)
 		return val * 10
@@ -144,7 +159,8 @@ converters['in'] = {
 	end,
 	rem = function(val)
 		local px = val * 96
-		return px / state.get_base_font().size
+		local base_font = parsers.base_font(utils.get_cursor_pos().row)
+		return px / base_font.size
 	end,
 	cm = function(val)
 		return val * 2.54 -- 1 inch = 2.54 centimeters
