@@ -25,7 +25,7 @@ M.find_next = function()
 
 
 		if found_unit ~= nil then
-			vim.api.nvim_win_set_cursor(current_win, { row, found_unit.start_col - 1 })
+			vim.api.nvim_win_set_cursor(current_win, { row, found_unit.pos.start_col - 1 })
 			ui.open_win(found_unit)
 			return
 		end
@@ -45,7 +45,7 @@ M.find_current = function()
 	local found_unit = utils.find_unit_in_line(line, cursor_pos.row)
 
 	if found_unit ~= nil then
-		vim.api.nvim_win_set_cursor(current_win, { cursor_pos.row, found_unit.start_col - 1 })
+		vim.api.nvim_win_set_cursor(current_win, { cursor_pos.row, found_unit.pos.start_col - 1 })
 		ui.open_win(found_unit)
 	end
 end
