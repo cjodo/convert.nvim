@@ -19,8 +19,8 @@ end
 M.find_next = function()
 	local cursor_pos = 	utils.get_cursor_pos()
 	local bufnr = 			vim.api.nvim_get_current_buf()
-	local current_win = vim.api.nvim_get_current_win()
 	local lines = 			vim.api.nvim_buf_get_lines(bufnr, 0, -1, true) -- All lines in current buffer
+	local current_win = vim.api.nvim_get_current_win()
 	local next_row = 		cursor_pos.row + 1
 
 	for row = next_row, #lines, 1 do

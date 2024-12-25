@@ -14,12 +14,8 @@ local font_size_pattern = "font%-size:%s*([%d%.]+)([pxrem]*)"
 
 ---@return base_font
 M.base_font = function(cursor_row) -- if no font is found until cursor pos, then no more checks are needed
-	local path = vim.fn.expand("%")
-	local file = io.open(path, 'r')
-
-	if not file then
-		return {nil}
-	end
+	local bufnr = 			vim.api.nvim_get_current_buf()
+	local lines = 			vim.api.nvim_buf_get_lines(bufnr, 0, -1, true) -- All lines in current buffer
 
 	---@type base_font
 	local base_font = {
@@ -31,13 +27,10 @@ M.base_font = function(cursor_row) -- if no font is found until cursor pos, then
 	local in_block = false
 	local block_content = ""
 
-	local current_row = 1
-
-	for line in file:lines() do
-		current_row = current_row + 1
+	for current_row = 1, #lines, 1 do
+		local line = lines[current_row]
 
 		if current_row > cursor_row then
-			file:close()
 			return base_font
 		end
 
