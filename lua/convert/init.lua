@@ -51,7 +51,7 @@ M.find_current = function()
 end
 
 M.convert_all = function()
-	split.open_split()
+	split.open_split(config)
 end
 
 return M

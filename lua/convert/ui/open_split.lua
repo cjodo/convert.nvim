@@ -1,7 +1,6 @@
 local Layout = require("nui.layout")
 local Menu = require("nui.menu")
 local convert_all = require("convert.convert_all")
-local config = require('convert.config')
 
 local units_menu = {
   Menu.separator('Colors', {
@@ -52,7 +51,7 @@ local to_unit = nil
 
 local M = {}
 
-M.open_split = function()
+M.open_split = function(config)
   local right_menu = Menu(right_options, {
     lines = units_menu,
     keymap = config.keymaps,
@@ -96,6 +95,7 @@ M.open_split = function()
   layout:mount()
 
   vim.keymap.set('n', "<CR>", function()
+		print(vim.inspect(right_menu))
     vim.api.nvim_set_current_buf(right_menu.bufnr)
   end, { buffer = left_menu.bufnr })
 end

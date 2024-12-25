@@ -22,7 +22,7 @@ M.get_cursor_pos = function()
 end
 
 
----full matched string
+---full matched string position
 ---@class matched_pos
 ---@field row integer | nil
 ---@field start_col integer

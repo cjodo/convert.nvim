@@ -37,6 +37,8 @@ local size_menu = {
 
 local M = {}
 
+
+---@param found_unit matched
 M.open_win = function(found_unit)
   local lines = nil
 
@@ -83,9 +85,9 @@ M.open_win = function(found_unit)
       local to_unit = item.text
       local from_val = found_unit.val
       local converted = calculator.convert(from_unit, to_unit, from_val)
-      vim.api.nvim_buf_set_text(0, found_unit.row - 1, found_unit.start_col - 1, found_unit.row - 1, found_unit.end_col,
+      vim.api.nvim_buf_set_text(0, found_unit.pos.row - 1, found_unit.pos.start_col - 1, found_unit.pos.row - 1, found_unit.pos.end_col,
         { converted })
-      vim.api.nvim_win_set_cursor(0, { found_unit.row, found_unit.end_col + #to_unit })
+      vim.api.nvim_win_set_cursor(0, { found_unit.pos.row, found_unit.pos.end_col + #to_unit })
     end
   })
 
