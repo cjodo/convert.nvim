@@ -1,6 +1,6 @@
 # convert.nvim
 
-https://github.com/user-attachments/assets/46129dd1-35b0-41ce-a1d8-ead1922d8af4
+https://github.com/user-attachments/assets/46320296-58c1-408c-9fd5-e3ee757d9288
 
 ## Dependencies
 - [nui.nvim](https://github.com/MunifTanjim/nui.nvim): UI Components
