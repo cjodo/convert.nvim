@@ -10,10 +10,6 @@ M.setup = function(opts)
 	if opts.keymaps then
 		config.keymaps = opts.keymaps
 	end
-
-	if opts.patterns then
-		config.patterns = utils.merge(config.patterns, opts.patterns)
-	end
 end
 
 M.find_next = function()
