@@ -23,9 +23,19 @@ local convert_all = function(bufnr, from, to)
 
 
 	local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
-	for row = 1, #lines, 1 do
-		local line = lines[row]
 
+	local num_lines = #lines
+	local start_row = 1
+
+	local selection = utils.get_selection()
+
+	if selection ~= nil then
+		start_row = selection.start_row
+		num_lines = #selection.lines
+	end
+
+	for row = start_row, num_lines + start_row - 1, 1 do
+		local line = lines[row]
 		local found_unit = utils.find_unit_in_line(line, row)
 
 		if found_unit ~= nil and found_unit.unit == from then
