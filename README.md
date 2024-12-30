@@ -8,6 +8,7 @@ https://github.com/user-attachments/assets/46320296-58c1-408c-9fd5-e3ee757d9288
 ## Features
 - Convert css units with one simple command
 - Base font supported for accurate rem conversion
+- Convert all in a selection or entire buffer
 
 ## Installation: 
 Use your favourite plugin manager
@@ -22,7 +23,8 @@ return {
   keys = {
     { "<leader>cn", "<cmd>ConvertFindNext<CR>", desc = "Find next convertable unit" },
     { "<leader>cc", "<cmd>ConvertFindCurrent<CR>", desc = "Find convertable unit in current line" },
-    { "<leader>ca", "<cmd>ConvertAll<CR>", desc = "Convert all of a specified unit" },
+        -- Add "v" to enable converting only a selected region
+    { "<leader>ca", "<cmd>ConvertAll<CR>", mode = {"n", "v"} desc = "Convert all of a specified unit" },
   },
 }
 ```
@@ -32,7 +34,7 @@ return {
 |----------------------|---------------------------------------------------------------------------|
 | :ConvertFindNext     | Finds the next convertible unit                                           |
 | :ConvertFindCurrent  | Finds the convertible unit in the current line (starting from cursor)     |
-| :ConvertAll          | Converts all instances of a given unit to another                         |
+| :ConvertAll          | Converts all instances in a buffer or visual mode selection of one unit to another of the same type (size, color)                         |
 
 ## Usage
 You can choose you're own custom keys for the ui menu
