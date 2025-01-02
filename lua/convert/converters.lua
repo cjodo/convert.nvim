@@ -275,6 +275,53 @@ converters.hsl = {
 	end
 }
 
+converters.binary = {
+	hexadecimal = function(val)
+		local decimal = tonumber(val, 2)
+		if not decimal then
+			error("invalid binary string: " .. val, 1)
+		end
+
+		return string.format("%X", decimal)
+	end,
+
+	octal = function (val)
+		local decimal = tonumber(val, 2)
+		if not decimal then
+			error("invalid binary string: " .. val, 1)
+			return
+		end
+
+		local octal = ""
+		while decimal > 0 do
+			local remainder = decimal % 8
+			octal = remainder .. octal
+			decimal = math.floor(decimal / 8)
+		end
+
+		return octal == "" and "0" or octal
+	end
+}
+
+converters.hexadecimal = {
+	binary = function (val)
+		return utils.num_convert(val, 16, 2)
+	end,
+	octal = function (val)
+		return utils.num_convert(val, 16, 8)
+	end
+}
+
+converters.octal = {
+	binary = function (val)
+		return utils.num_convert(val, 8, 2)
+	end,
+	hexadecimal = function (val)
+		local decimal = tonumber(val, 8)
+		return string.format("%X", decimal)
+	end,
+}
+
 local function convert(from, to, val)
 	if converters[from] and converters[from][to] then
 		return converters[from][to](val)

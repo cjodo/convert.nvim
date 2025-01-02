@@ -30,7 +30,7 @@ end
 
 ---@class matched
 ---@field unit string
----@field val integer
+---@field val integer | string
 ---@field pos matched_pos
 
 --- Matches line that satisfies any matcher from convert.patterns
@@ -132,6 +132,28 @@ M.merge = function (t1, t2)
 		table.insert(result, v)
 	end
 	return result
+end
+
+---Converts a base num to a base^to num
+---@param num integer
+---@param base integer
+---@param to integer
+---@return string | nil
+M.num_convert = function (num, base, to)
+	local decimal = tonumber(num, base)
+	if not decimal then
+		error("invalid base " .. base .. " string")
+		return nil
+	end
+
+	local ret = ""
+	while decimal > 0 do
+		local remainder = decimal % to
+		ret = remainder .. ret
+		decimal = math.floor(decimal / to)
+	end
+
+	return ret == "" and "0" or ret
 end
 
 return M

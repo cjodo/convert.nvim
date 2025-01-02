@@ -4,7 +4,7 @@ M.matchers = {
 	px = "(%d+%.?%d*)px",
 	rem = "(%d+%.?%d*)rem",
 	em = "(%d+%.?%d*)em",
-	['in'] = "(%d+%.?%d*)in", -- in is a reserved lua keyword
+	['in'] = "(%d+%.?%d*)in", -- "in" is a reserved lua keyword
 	ch = "(%d+%.?%d*)ch",
 	mm = "(%d+%.?%d*)mm",
 	cm = "(%d+%.?%d*)cm",
@@ -13,6 +13,9 @@ M.matchers = {
 	rgb = 'rgb%(%d+, %d+, %d+%)',
 	hex = "#(%x%x%x%x?%x?%x?%x?%x?)",
 	hsl = 'hsl%(%d+, %d+%%, %d+%%%)',
+	binary = '0b([01]+)',
+	octal = '0o([0-7]+)',
+	hexadecimal = '0x([%da-fA-F]+)',
 }
 
 M.extract = {

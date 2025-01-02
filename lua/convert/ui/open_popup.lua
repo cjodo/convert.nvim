@@ -35,6 +35,13 @@ local size_menu = {
   Menu.item('pc'),
 }
 
+local number_menu = {
+  Menu.item('binary'),
+  Menu.item('hexadecimal'),
+  Menu.item('octal'),
+  Menu.item('decimal'),
+}
+
 local M = {}
 
 
@@ -50,6 +57,10 @@ M.open_win = function(found_unit)
     lines = size_menu
   end
 
+	if lines == nil then
+		lines = number_menu
+	end
+
   local popup_opts = {
     relative = "cursor",
     position = {
@@ -63,7 +74,7 @@ M.open_win = function(found_unit)
     border = {
       style = "rounded",
       text = {
-        top = "[Convert " .. found_unit.val .. found_unit.unit .. " To]",
+        top = "[Convert " .. found_unit.val .. " " .. found_unit.unit .. " To]",
         top_align = "center"
       },
     },
