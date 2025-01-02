@@ -39,7 +39,6 @@ local number_menu = {
   Menu.item('binary'),
   Menu.item('hexadecimal'),
   Menu.item('octal'),
-  Menu.item('decimal'),
 }
 
 local M = {}
