@@ -21,6 +21,13 @@ local units_menu = {
   Menu.item('mm'),
   Menu.item('pt'),
   Menu.item('pc'),
+  Menu.separator('Numbers', {
+    char = '-',
+    text_align = 'left'
+  }),
+  Menu.item('bin'),
+  Menu.item('hexadecimal'),
+  Menu.item('octal'),
 }
 
 local left_options = {
