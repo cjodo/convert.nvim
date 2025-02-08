@@ -13,10 +13,17 @@ local size_units = {
   'pc'
 }
 
+
 local color_units = {
   'rgb',
   'hex',
   'hsl'
+}
+
+local number_units = {
+	'bin',
+	'hexadecimal',
+	'octal'
 }
 
 local color_menu = {
@@ -56,7 +63,7 @@ M.open_win = function(found_unit)
     lines = size_menu
   end
 
-	if lines == nil then
+	if utils.contains(number_units, found_unit.unit) then
 		lines = number_menu
 	end
 
