@@ -43,13 +43,12 @@ local size_menu = {
 }
 
 local number_menu = {
-  Menu.item('binary'),
+  Menu.item('bin'),
   Menu.item('hexadecimal'),
   Menu.item('octal'),
 }
 
 local M = {}
-
 
 ---@param found_unit matched
 M.open_win = function(found_unit)

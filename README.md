@@ -40,17 +40,52 @@ return {
 You can choose you're own custom keys for the ui menu
 
 ```lua
-  config = function()
+config = function()
     local convert = require('convert')
     -- defaults
     convert.setup({
-      keymaps = {
-        focus_next = { "j", "<Down>", "<Tab>" },
-        focus_prev = { "k", "<Up>", "<S-Tab>" },
-        close = { "<Esc>", "<C-c>", 'qq' },
-        submit = { "<CR>", "<Space>" },
-      }
+        keymaps = {
+            focus_next = { "j", "<Down>", "<Tab>" },
+            focus_prev = { "k", "<Up>", "<S-Tab>" },
+            close = { "<Esc>", "<C-c>", 'qq' },
+            submit = { "<CR>", "<Space>" },
+        },
+        modes = { "color", "size", "numbers" } -- available conversion modes
     })
-  end
+end
 
 ```
+## Supported Conversions
+
+### Size Units 📏  
+
+| Unit | Description |
+|------|------------|
+| `px`  | Pixels |
+| `rem` | Relative to root element |
+| `cm`  | Centimeters |
+| `in`  | Inches |
+| `mm`  | Millimeters |
+| `pt`  | Points |
+| `pc`  | Picas |
+
+---
+
+### Color Formats 🎨  
+
+| Format | Description |
+|--------|------------|
+| `rgb`  | Red-Green-Blue |
+| `hex`  | Hexadecimal color code |
+| `hsl`  | Hue-Saturation-Lightness |
+
+---
+
+### Number Systems 🔢  
+
+| Format       | Description |
+|-------------|------------|
+| `bin`       | Binary |
+| `hexadecimal` | Hexadecimal |
+| `octal`     | Octal |
+
