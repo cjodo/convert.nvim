@@ -63,7 +63,7 @@ M.open_split = function(config, menu)
       position = "50%",
       size = {
         width = 80,
-        height = #menu,
+        height = #menu + 2, --give-room for titles
       },
     },
     Layout.Box({
