@@ -13,7 +13,7 @@ M.matchers = {
 	rgb = 'rgb%(%d+, %d+, %d+%)',
 	hex = "#(%x%x%x%x?%x?%x?%x?%x?)",
 	hsl = 'hsl%(%d+, %d+%%, %d+%%%)',
-	binary = '0b([01]+)',
+	bin = '0b([01]+)',
 	octal = '0o([0-7]+)',
 	hexadecimal = '0x([%da-fA-F]+)',
 }
