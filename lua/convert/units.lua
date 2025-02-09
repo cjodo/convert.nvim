@@ -16,4 +16,10 @@ M.color_units = {
 	'hsl'
 }
 
+M.number_units = {
+	'bin',
+	'hexadecimal',
+	'octal'
+}
+
 return M

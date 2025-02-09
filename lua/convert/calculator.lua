@@ -17,9 +17,9 @@ M.convert = function(from, to, val)
 			return tostring(val)
 		end
 
-		if (from == "binary" or "hexadecimal" or "octal") then
+		if (from == "bin" or "hexadecimal" or "octal") then
 			local cases = {
-				["binary"] = function () return "0b" .. val end,
+				["bin"] = function () return "0b" .. val end,
 				["hexadecimal"] = function () return "0x" .. val end,
 				["octal"] = function () return "0o" .. val end,
 			}
@@ -46,7 +46,7 @@ M.convert = function(from, to, val)
 		return "#" .. result
 	end
 
-	if to == 'binary' then
+	if to == 'bin' then
 		return "0b".. result
 	end
 
