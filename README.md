@@ -81,7 +81,8 @@ end
 
 ---
 
-### Number Systems 🔢  
+### Number Systems 🔢  (Experimental)
+- Defined with respective prefix: 0b, 0x, 0o
 
 | Format       | Description |
 |-------------|------------|
