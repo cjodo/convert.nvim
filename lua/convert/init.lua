@@ -3,12 +3,17 @@ local ui = require("convert.ui.open_popup")
 local config = require("convert.config")
 local split = require("convert.ui.open_split")
 
+local Menu = require("nui.menu")
+
 
 local M = {}
 
 M.setup = function(opts)
 	if opts.keymaps then
 		config.keymaps = opts.keymaps
+	end
+	if opts.modes then
+		config.modes = opts.modes
 	end
 end
 
@@ -52,7 +57,34 @@ M.find_current = function()
 end
 
 M.convert_all = function()
-	split.open_split(config)
+	local units_menu = {}
+
+	if utils.contains(config.modes, "color") then
+		table.insert(units_menu, Menu.separator('Colors', { char = '-', text_align = 'left' }))
+		table.insert(units_menu, Menu.item('rgb'))
+		table.insert(units_menu, Menu.item('hex'))
+		table.insert(units_menu, Menu.item('hsl'))
+	end
+
+	if utils.contains(config.modes, "size") then
+		table.insert(units_menu, Menu.separator('Size', { char = '-', text_align = 'left' }))
+		table.insert(units_menu, Menu.item('px'))
+		table.insert(units_menu, Menu.item('rem'))
+		table.insert(units_menu, Menu.item('cm'))
+		table.insert(units_menu, Menu.item('in'))
+		table.insert(units_menu, Menu.item('mm'))
+		table.insert(units_menu, Menu.item('pt'))
+		table.insert(units_menu, Menu.item('pc'))
+	end
+
+	if utils.contains(config.modes, "number") then
+		table.insert(units_menu, Menu.separator('Numbers', { char = '-', text_align = 'left' }))
+		table.insert(units_menu, Menu.item('bin'))
+		table.insert(units_menu, Menu.item('hexadecimal'))
+		table.insert(units_menu, Menu.item('octal'))
+	end
+
+	split.open_split(config, units_menu)
 end
 
 return M
