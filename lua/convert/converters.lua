@@ -275,11 +275,11 @@ converters.hsl = {
 	end
 }
 
-converters.binary = {
+converters.bin = {
 	hexadecimal = function(val)
 		local decimal = tonumber(val, 2)
 		if not decimal then
-			error("invalid binary string: " .. val, 1)
+			error("invalid bin string: " .. val, 1)
 		end
 
 		return string.format("%X", decimal)
@@ -288,7 +288,7 @@ converters.binary = {
 	octal = function (val)
 		local decimal = tonumber(val, 2)
 		if not decimal then
-			error("invalid binary string: " .. val, 1)
+			error("invalid bin string: " .. val, 1)
 			return
 		end
 
@@ -304,7 +304,7 @@ converters.binary = {
 }
 
 converters.hexadecimal = {
-	binary = function (val)
+	bin = function (val)
 		return utils.num_convert(val, 16, 2)
 	end,
 	octal = function (val)
@@ -313,7 +313,7 @@ converters.hexadecimal = {
 }
 
 converters.octal = {
-	binary = function (val)
+	bin = function (val)
 		return utils.num_convert(val, 8, 2)
 	end,
 	hexadecimal = function (val)
