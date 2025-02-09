@@ -8,4 +8,6 @@ config.keymaps = {
 	submit = { "<CR>", "<Space>" },
 }
 
+config.modes = { "color", "size" }
+
 return config
