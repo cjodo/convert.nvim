@@ -16,16 +16,16 @@ Use your favourite plugin manager
 - Lazy: 
 ```lua
 return {
-  'cjodo/convert.nvim',
-  dependencies = {
-    'MunifTanjim/nui.nvim'
-  },
-  keys = {
-    { "<leader>cn", "<cmd>ConvertFindNext<CR>", desc = "Find next convertable unit" },
-    { "<leader>cc", "<cmd>ConvertFindCurrent<CR>", desc = "Find convertable unit in current line" },
+    'cjodo/convert.nvim',
+    dependencies = {
+        'MunifTanjim/nui.nvim'
+    },
+    keys = {
+        { "<leader>cn", "<cmd>ConvertFindNext<CR>", desc = "Find next convertable unit" },
+        { "<leader>cc", "<cmd>ConvertFindCurrent<CR>", desc = "Find convertable unit in current line" },
         -- Add "v" to enable converting only a selected region
-    { "<leader>ca", "<cmd>ConvertAll<CR>", mode = {"n", "v"} desc = "Convert all of a specified unit" },
-  },
+        { "<leader>ca", "<cmd>ConvertAll<CR>", mode = {"n", "v"} desc = "Convert all of a specified unit" },
+    },
 }
 ```
 ## Commands:
@@ -40,17 +40,52 @@ return {
 You can choose you're own custom keys for the ui menu
 
 ```lua
-  config = function()
+config = function()
     local convert = require('convert')
     -- defaults
     convert.setup({
-      keymaps = {
-        focus_next = { "j", "<Down>", "<Tab>" },
-        focus_prev = { "k", "<Up>", "<S-Tab>" },
-        close = { "<Esc>", "<C-c>", 'qq' },
-        submit = { "<CR>", "<Space>" },
-      }
+        keymaps = {
+            focus_next = { "j", "<Down>", "<Tab>" },
+            focus_prev = { "k", "<Up>", "<S-Tab>" },
+            close = { "<Esc>", "<C-c>", 'qq' },
+            submit = { "<CR>", "<Space>" },
+        },
+        modes = { "color", "size", "numbers" } -- available conversion modes
     })
-  end
+end
 
 ```
+## Supported Conversions
+
+### Size Units 📏  
+
+| Unit | Description |
+|------|------------|
+| `px`  | Pixels |
+| `rem` | Relative to root element |
+| `cm`  | Centimeters |
+| `in`  | Inches |
+| `mm`  | Millimeters |
+| `pt`  | Points |
+| `pc`  | Picas |
+
+---
+
+### Color Formats 🎨  
+
+| Format | Description |
+|--------|------------|
+| `rgb`  | Red-Green-Blue |
+| `hex`  | Hexadecimal color code |
+| `hsl`  | Hue-Saturation-Lightness |
+
+---
+
+### Number Systems 🔢  
+
+| Format       | Description |
+|-------------|------------|
+| `bin`       | Binary |
+| `hexadecimal` | Hexadecimal |
+| `octal`     | Octal |
+
