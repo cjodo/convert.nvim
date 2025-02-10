@@ -1,6 +1,4 @@
-
-local patterns = require('convert.patterns')
-local units = patterns.matchers
+local units = require('convert.patterns').matchers
 
 local M = {}
 
