@@ -16,17 +16,31 @@ Use your favourite plugin manager
 - Lazy: 
 ```lua
 return {
-  'cjodo/convert.nvim',
-  dependencies = {
-    'MunifTanjim/nui.nvim'
-  },
-  keys = {
-    { "<leader>cn", "<cmd>ConvertFindNext<CR>", desc = "Find next convertable unit" },
-    { "<leader>cc", "<cmd>ConvertFindCurrent<CR>", desc = "Find convertable unit in current line" },
+    'cjodo/convert.nvim',
+    dependencies = {
+        'MunifTanjim/nui.nvim'
+    },
+    keys = {
+        { "<leader>cn", "<cmd>ConvertFindNext<CR>", desc = "Find next convertable unit" },
+        { "<leader>cc", "<cmd>ConvertFindCurrent<CR>", desc = "Find convertable unit in current line" },
         -- Add "v" to enable converting a selected region
-    { "<leader>ca", "<cmd>ConvertAll<CR>", mode = {"n", "v"}, desc = "Convert all of a specified unit" },
-  },
+        { "<leader>ca", "<cmd>ConvertAll<CR>", mode = {"n", "v"}, desc = "Convert all of a specified unit" },
+    },
 }
+```
+- Packer: 
+```lua
+use {
+    'cjodo/convert.nvim',
+    requires = { 'MunifTanjim/nui.nvim' },
+    config = function()
+        require('convert').setup()
+        vim.keymap.set('n', '<leader>cn', '<cmd>ConvertFindNext<CR>', { desc = 'Find next convertible unit' })
+        vim.keymap.set('n', '<leader>cc', '<cmd>ConvertFindCurrent<CR>', { desc = 'Find convertible unit in current line' })
+        vim.keymap.set({ 'n', 'v' }, '<leader>ca', '<cmd>ConvertAll<CR>', { desc = 'Convert all of a specified unit' })
+    end
+}
+
 ```
 ## Commands:
 
