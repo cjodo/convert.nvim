@@ -29,7 +29,6 @@ M.find_next = function()
 
 
 		if found_unit ~= nil then
-			print(vim.inspect(found_unit))
 			vim.api.nvim_win_set_cursor(current_win, { row, found_unit.pos.start_col - 1 })
 			ui.open_win(found_unit)
 			return
