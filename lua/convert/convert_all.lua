@@ -21,7 +21,6 @@ local convert_all = function(bufnr, from, to)
 		return
 	end
 
-
 	local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
 
 	local num_lines = #lines

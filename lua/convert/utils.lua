@@ -1,8 +1,8 @@
-local M = {}
 
 local patterns = require('convert.patterns')
-
 local units = patterns.matchers
+
+local M = {}
 
 ---@class cursor_pos
 ---@field	row integer
@@ -39,6 +39,7 @@ end
 M.match_unit = function(line)
 	for unit, pattern in pairs(units) do
 		local s, e, val = string.find(line, pattern)
+
 		if s ~= nil and e ~= nil then
 			if unit == 'rgb' or unit == 'hsl' then
 				val = line:match(pattern)

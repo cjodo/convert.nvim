@@ -5,7 +5,6 @@ local split = require("convert.ui.open_split")
 
 local Menu = require("nui.menu")
 
-
 local M = {}
 
 M.setup = function(opts)
@@ -58,7 +57,7 @@ end
 
 M.convert_all = function()
 	local units_menu = {}
-
+	-- TODO: refactor this 
 	if utils.contains(config.modes, "color") then
 		table.insert(units_menu, Menu.separator('Colors', { char = '-', text_align = 'left' }))
 		table.insert(units_menu, Menu.item('rgb'))

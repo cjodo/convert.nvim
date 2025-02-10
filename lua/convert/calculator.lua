@@ -5,7 +5,7 @@ local M = {}
 
 ---@param from string
 ---@param to string
----@param val number
+---@param val number|string
 ---@return string
 M.convert = function(from, to, val)
 	if from == to then
