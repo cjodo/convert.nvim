@@ -17,26 +17,24 @@ local convert_all = function(bufnr, from, to)
 		to_type = 'size'
 	end
 	if from_type ~= to_type then
-		print(string.format("Can't convert %s to %s units", from_type, to_type))
 		return
 	end
 
 	local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
-		local all_units = utils.find_all_units_in_line(line, row)
-		if all_units ~= nil and #all_units > 0 and all_units[1].unit == from then
-			for i = #all_units, 1, -1 do
-				local found = all_units[i]
-				local converted = calculator.convert(from, to, found.val)
+	local all_units = utils.find_all_units_in_line(line, row)
+	if all_units ~= nil and #all_units > 0 and all_units[1].unit == from then
+		for i = #all_units, 1, -1 do
+			local found = all_units[i]
+			local converted = calculator.convert(from, to, found.val)
 
-				vim.api.nvim_buf_set_text(
-					bufnr,
-					found.pos.row - 1,
-					found.pos.start_col - 1,
-					found.pos.row - 1,
-					found.pos.end_col,
-					{ converted }
-				)
-			end
+			vim.api.nvim_buf_set_text(
+				bufnr,
+				found.pos.row - 1,
+				found.pos.start_col - 1,
+				found.pos.row - 1,
+				found.pos.end_col,
+				{ converted }
+			)
 		end
 	end
 end
