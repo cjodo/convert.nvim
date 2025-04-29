@@ -2,27 +2,6 @@ local Layout = require("nui.layout")
 local Menu = require("nui.menu")
 local convert_all = require("convert.convert_all")
 
-local units_menu = {
-  Menu.separator('Colors', {
-    char = '-',
-    text_align = 'left'
-  }),
-  Menu.item('rgb'),
-  Menu.item('hex'),
-  Menu.item('hsl'),
-  Menu.separator('Size', {
-    char = '-',
-    text_align = 'left'
-  }),
-  Menu.item('px'),
-  Menu.item('rem'),
-  Menu.item('cm'),
-  Menu.item('in'),
-  Menu.item('mm'),
-  Menu.item('pt'),
-  Menu.item('pc'),
-}
-
 local left_options = {
   enter = true,
   border = {
@@ -46,14 +25,15 @@ local right_options = {
   },
 }
 
-local origin_unit = nil
-local to_unit = nil
 
 local M = {}
 
-M.open_split = function(config)
+M.open_split = function(config, menu)
+	local origin_unit = nil
+	local to_unit = nil
+
   local right_menu = Menu(right_options, {
-    lines = units_menu,
+    lines = menu,
     keymap = config.keymaps,
     on_submit = function(item)
       if origin_unit == nil then
@@ -68,7 +48,7 @@ M.open_split = function(config)
   })
 
   local left_menu = Menu(left_options, {
-    lines = units_menu,
+    lines = menu,
     keymap = config.keymaps,
     on_change = function(item)
       origin_unit = item.text
@@ -83,7 +63,7 @@ M.open_split = function(config)
       position = "50%",
       size = {
         width = 80,
-        height = #units_menu,
+        height = #menu + 2, --give-room for titles
       },
     },
     Layout.Box({

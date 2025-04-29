@@ -13,10 +13,17 @@ local size_units = {
 	'pc'
 }
 
+
 local color_units = {
 	'rgb',
 	'hex',
 	'hsl'
+}
+
+local number_units = {
+	'bin',
+	'hexadecimal',
+	'octal'
 }
 
 local color_menu = {
@@ -35,7 +42,11 @@ local size_menu = {
 	Menu.item('pc'),
 }
 
-local M = {}
+local number_menu = {
+  Menu.item('bin'),
+  Menu.item('hexadecimal'),
+  Menu.item('octal'),
+}
 
 --- Opens popup window for convert in a single line
 ---@param found_units matched[]
@@ -111,6 +122,7 @@ M.open_win = function(found_units)
 	})
 
 	menu:mount()
+
 end
 
 return M

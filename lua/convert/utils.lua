@@ -1,8 +1,6 @@
+local units = require('convert.patterns').matchers
+
 local M = {}
-
-local patterns = require('convert.patterns')
-
-local units = patterns.matchers
 
 ---@class cursor_pos
 ---@field	row integer
@@ -30,7 +28,7 @@ end
 
 ---@class matched
 ---@field unit string
----@field val integer
+---@field val integer | string
 ---@field pos matched_pos
 
 --- Matches line that satisfies any matcher from convert.patterns
@@ -39,6 +37,7 @@ end
 M.match_unit = function(line)
 	for unit, pattern in pairs(units) do
 		local s, e, val = string.find(line, pattern)
+
 		if s ~= nil and e ~= nil then
 			if unit == 'rgb' or unit == 'hsl' then
 				val = line:match(pattern)
@@ -151,6 +150,33 @@ M.get_file_extension = function(url)
 end
 
 
+---@class selection 
+---@field start_row integer
+---@field lines string[]
+---@return selection | nil
+M.get_selection = function ()
+	local s_start = vim.fn.getpos("'<")
+	local s_end = vim.fn.getpos("'>")
+	local n_lines = math.abs(s_end[2] - s_start[2]) + 1
+
+	local lines = vim.api.nvim_buf_get_lines(0, s_start[2] - 1, s_end[2], false)
+
+	if #lines <= 1 then
+		return nil
+	end
+
+	lines[1] = string.sub(lines[1], s_start[3], -1)
+	if n_lines == 1 then
+		lines[n_lines] = string.sub(lines[n_lines], 1, s_end[3] - s_start[3] + 1)
+	else
+		lines[n_lines] = string.sub(lines[n_lines], 1, s_end[3])
+	end
+	return {
+		start_row = s_start[2],
+		lines = lines
+	}
+end
+
 M.merge = function (t1, t2)
 	local result = {}
 	for _, v in ipairs(t1) do
@@ -160,6 +186,28 @@ M.merge = function (t1, t2)
 		table.insert(result, v)
 	end
 	return result
+end
+
+---Converts a base num to a base^to num
+---@param num integer
+---@param base integer
+---@param to integer
+---@return string | nil
+M.num_convert = function (num, base, to)
+	local decimal = tonumber(num, base)
+	if not decimal then
+		error("invalid base " .. base .. " string")
+		return nil
+	end
+
+	local ret = ""
+	while decimal > 0 do
+		local remainder = decimal % to
+		ret = remainder .. ret
+		decimal = math.floor(decimal / to)
+	end
+
+	return ret == "" and "0" or ret
 end
 
 return M

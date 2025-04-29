@@ -22,9 +22,6 @@ local convert_all = function(bufnr, from, to)
 	end
 
 	local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
-	for row = 1, #lines, 1 do
-		local line = lines[row]
-
 		local all_units = utils.find_all_units_in_line(line, row)
 		if all_units ~= nil and #all_units > 0 and all_units[1].unit == from then
 			for i = #all_units, 1, -1 do
