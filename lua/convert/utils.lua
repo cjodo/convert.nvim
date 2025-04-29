@@ -57,7 +57,62 @@ M.match_unit = function(line)
 	return nil
 end
 
----@return matched | nil
+
+---@param line string
+---@param cursor_row number
+---@return matched[] | nil
+M.find_all_units_in_line = function(line, cursor_row)
+	local results = {}
+	local matched_unit = nil
+
+	for unit, pattern in pairs(units) do
+		local start_pos = 1
+		while start_pos <= #line do
+			local s, e, val = string.find(line, pattern, start_pos)
+			if s == nil then break end
+
+			if unit == 'rgb' or unit == 'hsl' then
+				val = line:match(pattern, start_pos)
+			end
+
+			local num_val = tonumber(val)
+			if num_val then
+				-- If this is the first unit match, set it as the inferred from_unit
+				if not matched_unit then
+					matched_unit = unit
+				end
+
+				-- Only collect matches for the same inferred unit
+				if unit == matched_unit then
+					table.insert(results, {
+						unit = unit,
+						val = num_val,
+						pos = {
+							row = cursor_row,
+							start_col = s,
+							end_col = e,
+						}
+					})
+				end
+			end
+
+			start_pos = e + 1
+		end
+
+		if matched_unit then
+			break -- only process one unit type (inferred one)
+		end
+	end
+
+	if #results > 0 then
+		return results
+	end
+
+	return nil
+end
+
+
+---@return matched[] | nil
 M.find_unit_in_line = function(line, cursor_row)
 	local unit = M.match_unit(line)
 	if unit then

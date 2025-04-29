@@ -25,12 +25,12 @@ M.find_next = function()
 
 	for row = next_row, #lines, 1 do
 		local line = lines[row]
-		local found_unit = utils.find_unit_in_line(line, row)
+		local found_units = utils.find_all_units_in_line(line, row)
 
 
-		if found_unit ~= nil then
-			vim.api.nvim_win_set_cursor(current_win, { row, found_unit.pos.start_col - 1 })
-			ui.open_win(found_unit)
+		if found_units ~= nil then
+			vim.api.nvim_win_set_cursor(current_win, { row, found_units[1].pos.start_col - 1 })
+			ui.open_win(found_units)
 			return
 		end
 	end
@@ -46,11 +46,11 @@ M.find_current = function()
 
 	line = string.rep(" ", #current_line - #line) .. line
 
-	local found_unit = utils.find_unit_in_line(line, cursor_pos.row)
+	local found_units = utils.find_all_units_in_line(line, cursor_pos.row)
 
-	if found_unit ~= nil then
-		vim.api.nvim_win_set_cursor(current_win, { cursor_pos.row, found_unit.pos.start_col - 1 })
-		ui.open_win(found_unit)
+	if found_units ~= nil and #found_units > 0 then
+		vim.api.nvim_win_set_cursor(current_win, { cursor_pos.row, found_units[1].pos.start_col - 1 })
+		ui.open_win(found_units)
 	end
 end
 

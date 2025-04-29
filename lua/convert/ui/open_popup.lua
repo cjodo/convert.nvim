@@ -4,20 +4,20 @@ local utils = require("convert.utils")
 local config = require("convert.config")
 
 local size_units = {
-  'px',
-  'rem',
-  'cm',
-  'in',
-  'mm',
-  'pt',
-  'pc'
+	'px',
+	'rem',
+	'cm',
+	'in',
+	'mm',
+	'pt',
+	'pc'
 }
 
 
 local color_units = {
-  'rgb',
-  'hex',
-  'hsl'
+	'rgb',
+	'hex',
+	'hsl'
 }
 
 local number_units = {
@@ -27,19 +27,19 @@ local number_units = {
 }
 
 local color_menu = {
-  Menu.item('rgb'),
-  Menu.item('hex'),
-  Menu.item('hsl'),
+	Menu.item('rgb'),
+	Menu.item('hex'),
+	Menu.item('hsl'),
 }
 
 local size_menu = {
-  Menu.item('px'),
-  Menu.item('rem'),
-  Menu.item('cm'),
-  Menu.item('in'),
-  Menu.item('mm'),
-  Menu.item('pt'),
-  Menu.item('pc'),
+	Menu.item('px'),
+	Menu.item('rem'),
+	Menu.item('cm'),
+	Menu.item('in'),
+	Menu.item('mm'),
+	Menu.item('pt'),
+	Menu.item('pc'),
 }
 
 local number_menu = {
@@ -48,66 +48,81 @@ local number_menu = {
   Menu.item('octal'),
 }
 
-local M = {}
+--- Opens popup window for convert in a single line
+---@param found_units matched[]
+M.open_win = function(found_units)
+	if not found_units or #found_units == 0 then return end
 
----@param found_unit matched
-M.open_win = function(found_unit)
-  local lines = nil
+	local from_unit = found_units[1].unit
+	local from_val = found_units[1].val
 
-  if utils.contains(color_units, found_unit.unit) then
-    lines = color_menu
-  end
+	local lines = nil
 
-  if utils.contains(size_units, found_unit.unit) then
-    lines = size_menu
-  end
-
-	if utils.contains(number_units, found_unit.unit) then
-		lines = number_menu
+	if utils.contains(color_units, from_unit) then
+		lines = color_menu
+	elseif utils.contains(size_units, from_unit) then
+		lines = size_menu
+	else
+		return
 	end
 
-  local popup_opts = {
-    relative = "cursor",
-    position = {
-      row = 2,
-      col = 1,
-    },
-    size = {
-      width = 40,
-      height = #lines,
-    },
-    border = {
-      style = "rounded",
-      text = {
-        top = "[Convert " .. found_unit.val .. " " .. found_unit.unit .. " To]",
-        top_align = "center"
-      },
-    },
-    buf_options = {
-      modifiable = false,
-      readonly = true,
-    },
-    win_options = {
-      winhighlight = "Normal:Normal"
-    }
-  }
-  local menu = Menu(popup_opts, {
-    lines = lines,
+	local popup_opts = {
+		relative = "cursor",
+		position = {
+			row = 2,
+			col = 1,
+		},
+		size = {
+			width = 40,
+			height = #lines,
+		},
+		border = {
+			style = "rounded",
+			text = {
+				top = "[Convert " .. from_val .. " To]",
+				top_align = "center"
+			},
+		},
+		buf_options = {
+			modifiable = false,
+			readonly = true,
+		},
+		win_options = {
+			winhighlight = "Normal:Normal"
+		}
+	}
+	local menu = Menu(popup_opts, {
+		lines = lines,
 
-    max_width = 100,
-    keymap = config.keymaps,
-    on_submit = function(item)
-      local from_unit = found_unit.unit
-      local to_unit = item.text
-      local from_val = found_unit.val
-      local converted = calculator.convert(from_unit, to_unit, from_val)
-      vim.api.nvim_buf_set_text(0, found_unit.pos.row - 1, found_unit.pos.start_col - 1, found_unit.pos.row - 1, found_unit.pos.end_col,
-        { converted })
-      vim.api.nvim_win_set_cursor(0, { found_unit.pos.row, found_unit.pos.end_col + #to_unit })
-    end
-  })
+		max_width = 100,
+		keymap = config.keymaps,
+		on_submit = function(item)
+			local to_unit = item.text
+			local bufnr = 0
 
-  menu:mount()
+			for i = #found_units, 1, -1 do
+				local match = found_units[i]
+				if match.unit == from_unit then
+					local converted = calculator.convert(from_unit, to_unit, match.val)
+					vim.api.nvim_buf_set_text(
+						bufnr,
+						match.pos.row - 1,
+						match.pos.start_col - 1,
+						match.pos.row - 1,
+						match.pos.end_col,
+						{ converted }
+					)
+				end
+			end
+
+			-- Move cursor to end of last converted unit
+			local last = found_units[#found_units]
+			vim.api.nvim_win_set_cursor(0, { last.pos.row, last.pos.end_col + #to_unit })
+		end
+	})
+
+	menu:mount()
+
 end
 
 return M
