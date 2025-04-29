@@ -44,8 +44,6 @@ M.find_current = function()
 
 	local line = current_line:sub(0, #current_line)
 
-	line = string.rep(" ", #current_line - #line) .. line
-
 	local found_units = utils.find_all_units_in_line(line, cursor_pos.row)
 
 	if found_units ~= nil and #found_units > 0 then
