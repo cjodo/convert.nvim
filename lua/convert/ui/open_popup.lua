@@ -3,6 +3,8 @@ local calculator = require("convert.calculator")
 local utils = require("convert.utils")
 local config = require("convert.config")
 
+local M = {}
+
 local size_units = {
 	'px',
 	'rem',
