@@ -13,6 +13,22 @@ https://github.com/user-attachments/assets/46320296-58c1-408c-9fd5-e3ee757d9288
 ## Installation: 
 Use your favourite plugin manager
 
+## Experimental Feature: Telescope Support
+
+```lua
+return {
+    'cjodo/convert.nvim',
+    dependencies = {
+        'nvim-telescope/telescope.nvim',
+        'MunifTanjim/nui.nvim',
+
+    },
+    keys = {
+        { "<leader>cc", "<cmd>Telescope convert<CR>", desc = "Open telescope window" },
+    },
+}
+```
+
 - Lazy: 
 ```lua
 return {
