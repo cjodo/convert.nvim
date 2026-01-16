@@ -105,7 +105,7 @@ M.open_win = function(found_units)
 			for i = #found_units, 1, -1 do
 				local match = found_units[i]
 				if match.unit == from_unit then
-					local converted = calculator.convert(from_unit, to_unit, match.val)
+					local converted = calculator.convert(from_unit, to_unit, tonumber(match.val))
 					vim.api.nvim_buf_set_text(
 						bufnr,
 						match.pos.row - 1,

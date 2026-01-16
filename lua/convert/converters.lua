@@ -177,7 +177,8 @@ converters['in'] = {
 }
 
 local function hex_to_rgb(val)
-	local hex = val:gsub("#", "")
+	local str = tostring(val)
+	local hex = str:gsub("#", "")
 
 	if #hex == 3 then
 		local r = tonumber(hex:sub(1, 1) .. hex:sub(1, 1), 16)
